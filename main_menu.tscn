@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://cei2q28bymy4y"]
+[gd_scene load_steps=4 format=3 uid="uid://cei2q28bymy4y"]
 
 [ext_resource type="PackedScene" uid="uid://bs4fpjte0ug28" path="res://addons/swashberry/license_dialog/license_dialog.tscn" id="1_06t4h"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_06t4h"]
+font_size = 72
+
+[sub_resource type="LabelSettings" id="LabelSettings_7vrkn"]
+font_size = 24
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -9,6 +15,30 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "REDOT_PONG"
+label_settings = SubResource("LabelSettings_06t4h")
+horizontal_alignment = 1
+
+[node name="ByLine" type="Label" parent="Title"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -15.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "BY_LINE"
+label_settings = SubResource("LabelSettings_7vrkn")
+horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
