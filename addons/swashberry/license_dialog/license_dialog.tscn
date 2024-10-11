@@ -17,7 +17,7 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="Container"]
 custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
-text = "Clicking one of the buttons below will display licensing information for individual components of Redot Pong and the engine it is built on, the Redot Engine. The full text of each license can be found by scrolling to the bottom."
+text = "LICENSE_SCREEN_INFO"
 autowrap_mode = 2
 
 [node name="ComponentList" type="Tree" parent="Container"]
