@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cei2q28bymy4y"]
+[gd_scene load_steps=5 format=3 uid="uid://cei2q28bymy4y"]
 
 [ext_resource type="PackedScene" uid="uid://bs4fpjte0ug28" path="res://addons/swashberry/license_dialog/license_dialog.tscn" id="1_06t4h"]
+[ext_resource type="Script" path="res://main_menu.gd" id="1_7vrkn"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_06t4h"]
 font_size = 72
@@ -15,6 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_7vrkn")
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 1
@@ -50,5 +52,15 @@ text = "LEGAL_STUFF"
 title = "First- and Third-Party Licensing Information"
 initial_position = 1
 project_name = "Redot Pong"
+
+[node name="VersionNumberLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
+text = "VERSION_NUMBER"
 
 [connection signal="pressed" from="Button" to="LicenseDialog" method="popup"]
