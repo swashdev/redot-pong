@@ -36,7 +36,11 @@ var project_components: Dictionary = {
 		{
 			"files": ["*"],
 			"copyright": ["2024 swashberry"],
-			"license": ["Unlicense"]
+			"license": "Unlicense\n" +
+					"Disclaimer: swashberry is not a Redot Engine developer,\n" +
+					"and the name \"Redot Pong\" is not intended to imply\n" +
+					"endorsement from the Redot Engine dev team.\n" +
+					"This is a fan project only."
 		},
 	],
 	"License Dialog for Redot": [
