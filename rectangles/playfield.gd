@@ -1,4 +1,5 @@
 @tool
+class_name RedotPongPlayfield
 extends RedotPongRect
 # Defines the boundaries of the play field and how it is drawn on-screen.
 
@@ -6,8 +7,10 @@ extends RedotPongRect
 #region Variables
 
 @export_group("Border")
-@export_range(0.0, 10.0, 1.0, "or_greater") var border_width: float = 10.0
-@export var border_color: Color = Color.WHITE
+@export_range(0.0, 10.0, 1.0, "or_greater") var border_width: float = 10.0:
+	get = get_border_width, set = set_border_width
+@export var border_color: Color = Color.WHITE:
+	get = get_border_color, set = set_border_color
 
 #endregion Variables
 
@@ -27,6 +30,24 @@ func set_half_width(value: float) -> void:
 
 func set_half_height(value: float) -> void:
 	super(value)
+	queue_redraw()
+
+
+func get_border_width() -> float:
+	return border_width
+
+func set_border_width(value: float) -> void:
+	border_width = absf(value)
+	queue_redraw()
+
+
+func get_border_color() -> Color:
+	return border_color
+
+func set_border_color(value: Color) -> void:
+	border_color.r = value.r
+	border_color.g = value.g
+	border_color.b = value.b
 	queue_redraw()
 
 #endregion Setters & Getters

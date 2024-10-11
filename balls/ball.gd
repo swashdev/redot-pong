@@ -1,3 +1,4 @@
+@tool
 class_name RedotPongBall
 extends Node2D
 # A ball to bounce back and forth.
@@ -6,7 +7,8 @@ extends Node2D
 #region Variables
 
 # The radius of the ball.
-@export_range(1.0, 20.0, 1.0, "or_greater") var radius: float = 10.0
+@export_range(1.0, 20.0, 1.0, "or_greater") var radius: float = 10.0:
+	get = get_radius, set = set_radius
 
 # The ball's color.
 @export_color_no_alpha var _color: Color = Color.WHITE:
@@ -56,11 +58,19 @@ var right: float:
 
 # Draws the ball
 func _draw() -> void:
-	draw_circle(position, radius, _color, true)
+	draw_circle(Vector2.ZERO, radius, _color, true)
 
 #endregion System Functions
 
 #region Setters & Getters
+
+func get_radius() -> float:
+	return radius
+
+func set_radius(value: float) -> void:
+	radius = absf(value)
+	queue_redraw()
+
 
 func get_color() -> Color:
 	return _color
@@ -69,5 +79,6 @@ func set_color(value: Color) -> void:
 	_color.r = value.r
 	_color.g = value.g
 	_color.b = value.b
+	queue_redraw()
 
 #endregion Setters & Getters

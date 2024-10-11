@@ -1,3 +1,4 @@
+@tool
 class_name RedotPongPaddle
 extends RedotPongRect
 # The base script for paddles in Redot Pong.
@@ -36,6 +37,15 @@ func _draw() -> void:
 
 #region Setters & Getters
 
+func set_half_width(value: float) -> void:
+	super(value)
+	queue_redraw()
+
+func set_half_height(value: float) -> void:
+	super(value)
+	queue_redraw()
+
+
 func get_rect() -> Rect2:
 	return _rect
 
@@ -47,5 +57,6 @@ func set_color(value: Color) -> void:
 	_color.r = value.r
 	_color.g = value.g
 	_color.b = value.b
+	queue_redraw()
 
 #endregion Setters & Getters
