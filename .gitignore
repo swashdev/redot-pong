@@ -2,3 +2,11 @@
 .godot/
 /android/
 .editorconfig
+
+# Exported binaries
+bin/
+*.zip
+*.7z
+*.xz
+*.gz
+*.bz2
