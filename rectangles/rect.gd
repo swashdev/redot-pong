@@ -6,8 +6,10 @@ extends Node2D
 # The dimensions of the rectangle, defined as how far it "extends" out from the
 # center.
 @export_group("Size")
-@export_range(0, 100.0, 1.0, "or_greater") var extent_x: float
-@export_range(0, 100.0, 1.0, "or_greater") var extent_y: float
+@export_range(0, 100.0, 1.0, "or_greater") var extent_x: float:
+	get = get_half_width, set = set_half_width
+@export_range(0, 100.0, 1.0, "or_greater") var extent_y: float:
+	get = get_half_height, set = set_half_height
 
 #region Properties of the Rectangle
 
@@ -49,3 +51,20 @@ var width: float:
 		extent_x = value / 2
 
 #endregion Properties of the Rectangle
+
+#region Setters & Getters
+
+func get_half_width() -> float:
+	return extent_x
+
+func set_half_width(value: float) -> void:
+	extent_x = value
+
+
+func get_half_height() -> float:
+	return extent_y
+
+func set_half_height(value) -> void:
+	extent_y = value
+
+#endregion Setters & Getters
