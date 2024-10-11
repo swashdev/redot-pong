@@ -1,0 +1,51 @@
+class_name RedotPongPaddle
+extends RedotPongRect
+# The base script for paddles in Redot Pong.
+
+
+#region Variables
+
+# The paddle's color.
+@export_color_no_alpha var _color: Color = Color.WHITE:
+	get = get_color, set = set_color
+
+# A rectangle used when drawing the paddle.
+@onready var _rect: Rect2:
+	get = get_rect
+
+#endregion Variables
+
+#region System Functions
+
+# Initialization
+func _ready() -> void:
+	# Initialize the paddle's rectangle.
+	# Note that the position is negative because it's declared relative to the
+	# paddle's center.
+	_rect = Rect2(-extent_x, -extent_y, \
+			extent_x * 2, extent_y * 2)
+
+
+# Draws the paddle at its current position.
+func _draw() -> void:
+	draw_rect(_rect, _color, true)
+	#if OS.is_debug_build():
+	#	draw_circle(Vector2(0, 0), 1.0, Color.RED, true)
+
+#endregion System Functions
+
+#region Setters & Getters
+
+func get_rect() -> Rect2:
+	return _rect
+
+
+func get_color() -> Color:
+	return _color
+
+func set_color(value: Color) -> void:
+	_color.r = value.r
+	_color.g = value.g
+	_color.b = value.b
+
+#endregion Setters & Getters
