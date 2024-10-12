@@ -1,7 +1,7 @@
 extends Node
 # Used to handle global variables and functions.
 
-# The version number.
+
 const VERSION_MAJOR: int = 0
 const VERSION_MINOR: int = 1
 const VERSION_PATCH: int = 0

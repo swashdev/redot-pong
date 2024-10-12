@@ -20,6 +20,8 @@ func _draw() -> void:
 			-extent_y - (border_width / 2), \
 			width + border_width, height + border_width), \
 			border_color, false, border_width)
+	draw_line(Vector2(0.0, -extent_y), Vector2(0.0, extent_y), \
+			border_color, 2.0)
 
 
 #region Setters & Getters
