@@ -1,6 +1,17 @@
 extends Node2D
 # A node controlling the playfield and game logic for Redot Pong.
 
+
+#region Signals
+
+# Emitted when the game is finished setting up.
+signal all_set
+
+# Emitted when the game is over.
+signal over(victor: int)
+
+#region Signals
+
 #region Constants
 
 # The base speed for the ball & paddle
@@ -211,3 +222,28 @@ func write_scores() -> void:
 
 
 #endregion Mainloop
+
+#region Setup
+
+func new_game(with_two_players: bool = false) -> void:
+	two_players = with_two_players
+
+	player_1.position = Vector2(166, 324)
+	player_2.position = Vector2(986, 324)
+	player_1_score = 0
+	player_2_score = 0
+	frustration = 0
+
+	# The ball starts in the middle.  In a two-player game it will randomly
+	# select a player to serve to.  In a single-player game it will always
+	# serve to the player.
+	ball.position = Vector2(576, 324)
+	if not two_players:
+		ball_direction = Vector2.LEFT
+	else:
+		ball_direction = Vector2.LEFT if randi() & 1 else Vector2.RIGHT
+
+	write_scores()
+	emit_signal("all_set")
+
+#endregion Setup
