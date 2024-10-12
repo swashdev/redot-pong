@@ -89,23 +89,27 @@ func _process(delta: float) -> void:
 	var delta_pos: float
 	var movement: float = delta * BASE_PADDLE_SPEED
 
-	delta_pos = movement * Input.get_action_strength("ui_down")
-	delta_pos -= movement * Input.get_action_strength("ui_up")
-	move_paddle(player_1, delta_pos)
-
-	# Do AI for the player 2 paddle.
-	if two_players:
-		push_error("2-player mode hasn't been implemented yet :-(")
+	# Pause the game if the player requests it.
+	if Input.is_action_just_pressed("ui_cancel"):
+		pause()
 	else:
-		var target_contact_y: float = target_contact_point + player_2.position.y
-		#var distance: float = ball.position.y - target_contact_y
-		if ball_direction.x > 0.0:
-			delta_pos = ball.position.y - target_contact_y
-			delta_pos = clampf(delta_pos, -1.0, 1.0) * movement
-			move_paddle(player_2, delta_pos * ai_speed_mod)
+		delta_pos = movement * Input.get_action_strength("ui_down")
+		delta_pos -= movement * Input.get_action_strength("ui_up")
+		move_paddle(player_1, delta_pos)
 
-	# Move the ball.
-	move_ball(delta)
+		# Do AI for the player 2 paddle.
+		if two_players:
+			push_error("2-player mode hasn't been implemented yet :-(")
+		else:
+			var target_contact_y: float = target_contact_point + player_2.position.y
+			#var distance: float = ball.position.y - target_contact_y
+			if ball_direction.x > 0.0:
+				delta_pos = ball.position.y - target_contact_y
+				delta_pos = clampf(delta_pos, -1.0, 1.0) * movement
+				move_paddle(player_2, delta_pos * ai_speed_mod)
+
+		# Move the ball.
+		move_ball(delta)
 
 
 # Moves the given `paddle` a given `delta_pos`.
