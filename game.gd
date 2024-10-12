@@ -10,6 +10,9 @@ signal all_set
 # Emitted when the game is over.
 signal over(victor: int)
 
+# Emitted when the game pauses/unpouses
+signal pause_state_changed(paused: bool)
+
 #region Signals
 
 #region Constants
@@ -71,6 +74,14 @@ var frustration: int = 0
 #endregion AI Variables
 
 #endregion Local Variables
+
+#region Initialization
+
+# Initial setup
+func _ready():
+	pause()
+
+#endregion Initialization
 
 #region Mainloop
 
@@ -224,6 +235,20 @@ func write_scores() -> void:
 #endregion Mainloop
 
 #region Setup
+
+# Pauses the `Game` process, usually to pop up the main menu.
+func pause() -> void:
+	set_process(false)
+	modulate.v = 0.5
+	emit_signal("pause_state_changed", true)
+
+
+# Unpauses.
+func unpause() -> void:
+	emit_signal("pause_state_changed", false)
+	modulate.v = 1.0
+	set_process(true)
+
 
 func new_game(with_two_players: bool = false) -> void:
 	two_players = with_two_players
