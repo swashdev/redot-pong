@@ -122,15 +122,10 @@ func move_ball(delta: float) -> void:
 				ball_bounced = BallBounced.RIGHT
 		elif ball.left < playfield.left:
 			ball_direction.x *= -1
-			player_2_score += 1
+			score_player(2)
 			ball_bounced = BallBounced.RIGHT
 			print("Ball contacted left wall.  Player 2 has %d points." \
 					% player_2_score)
-			if not two_players:
-				# The AI becomes less frustrated if it scores a point.
-				if frustration > -5:
-					frustration -= 1
-					print("Frustration levels at %d" % frustration)
 	elif ball_direction.x > 0.0:
 		if ball.right > player_2.left and ball.left < player_2.left:
 			if ball.top < player_2.bottom and ball.bottom > player_2.top:
@@ -141,14 +136,10 @@ func move_ball(delta: float) -> void:
 				ball_bounced = BallBounced.LEFT
 		elif ball.right > playfield.right:
 			ball_direction.x *= -1
-			player_1_score += 1
+			score_player(1)
 			ball_bounced = BallBounced.LEFT
 			print("Ball contacted right wall.  Player 1 has %d points." \
 					% player_1_score)
-			if not two_players:
-				# The AI becomes more frustrated as the player scores points.
-				frustration += 1
-				print("Frustration levels at %d" % frustration)
 	if ball_direction.y < 0.0:
 		if ball.top < playfield.top:
 			ball_direction.y *= -1
@@ -195,6 +186,20 @@ func move_ball(delta: float) -> void:
 								player_2.extent_y + ball.radius)
 		print("The ball bounced.  New move speed is %f PPS" \
 				% (ball_speed_mod * BASE_BALL_SPEED))
+
+
+# Incremeents a given player's score.
+func score_player(which_player: int) -> void:
+	assert(which_player < 3 && which_player > 0)
+	if which_player == 1:
+		player_1_score += 1
+		if not two_players:
+			frustration += 1
+	else:
+		player_2_score += 1
+		if not two_players:
+			if frustration > -5:
+				frustration -= 1
 
 
 #endregion Mainloop
