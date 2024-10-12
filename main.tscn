@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bdjqslatj4fqm"]
+[gd_scene load_steps=8 format=3 uid="uid://bdjqslatj4fqm"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_1bvp3"]
+[ext_resource type="Script" path="res://main.gd" id="1_7mycd"]
 [ext_resource type="Script" path="res://rectangles/playfield.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cei2q28bymy4y" path="res://main_menu.tscn" id="1_lquwl"]
 [ext_resource type="Script" path="res://balls/ball.gd" id="2_1bvp3"]
@@ -10,6 +11,7 @@
 font_size = 72
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_7mycd")
 metadata/_edit_lock_ = true
 
 [node name="Game" type="Node2D" parent="."]
@@ -63,3 +65,5 @@ horizontal_alignment = 1
 [node name="MainMenu" parent="." instance=ExtResource("1_lquwl")]
 offset_right = 1152.0
 offset_bottom = 648.0
+
+[connection signal="requested_new_game" from="MainMenu" to="." method="_on_main_menu_requested_new_game"]
