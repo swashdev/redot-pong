@@ -26,7 +26,7 @@ script = ExtResource("1_7vrkn")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 23.0
+offset_bottom = 99.0
 grow_horizontal = 2
 text = "REDOT_PONG"
 label_settings = SubResource("LabelSettings_06t4h")
@@ -46,10 +46,20 @@ text = "BY_LINE"
 label_settings = SubResource("LabelSettings_7vrkn")
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="Buttons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_right = 0.75
+anchor_bottom = 1.0
+offset_left = -55.5
+offset_right = 55.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="LegalStuffButton" type="Button" parent="Buttons"]
+layout_mode = 2
 text = "LEGAL_STUFF"
 
 [node name="LicenseDialog" parent="." instance=ExtResource("1_06t4h")]
@@ -67,4 +77,4 @@ offset_right = 40.0
 grow_vertical = 0
 text = "VERSION_NUMBER"
 
-[connection signal="pressed" from="Button" to="LicenseDialog" method="popup"]
+[connection signal="pressed" from="Buttons/LegalStuffButton" to="LicenseDialog" method="popup"]
