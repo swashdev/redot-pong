@@ -58,7 +58,7 @@ var right: float:
 
 # Draws the ball
 func _draw() -> void:
-	draw_circle(Vector2.ZERO, radius, _color, true)
+	draw_circle(Vector2.ZERO, radius, _color, true, -1.0, true)
 
 #endregion System Functions
 
