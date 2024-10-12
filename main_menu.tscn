@@ -5,9 +5,13 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_06t4h"]
 font_size = 72
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_7vrkn"]
 font_size = 24
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
