@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cei2q28bymy4y"]
 
 [ext_resource type="PackedScene" uid="uid://bs4fpjte0ug28" path="res://addons/swashberry/license_dialog/license_dialog.tscn" id="1_06t4h"]
-[ext_resource type="Script" path="res://main_menu.gd" id="1_7vrkn"]
+[ext_resource type="Script" path="res://main/main_menu.gd" id="1_7vrkn"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_06t4h"]
 font_size = 72
