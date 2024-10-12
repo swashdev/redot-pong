@@ -31,6 +31,9 @@ var player_2_score: int = 0
 # The direction that the ball is moving, irrespective of speed.
 var ball_direction: Vector2 = Vector2(-0.5, 0.5)
 
+# A multiplier which is applied to the ball's speed as the player scores.
+var ball_speed_mod: float = 1.0
+
 #endregion Local Variables
 
 #region Mainloop
@@ -60,7 +63,7 @@ func move_paddle(paddle: RedotPongPaddle, delta_pos: float) -> void:
 
 # Moves the ball.
 func move_ball(delta: float) -> void:
-	var ball_speed: float = BASE_BALL_SPEED * delta
+	var ball_speed: float = BASE_BALL_SPEED * ball_speed_mod * delta
 	var ball_velocity: Vector2 = ball_direction * ball_speed
 	var contact_point: float
 	var contact_point_normal: float
@@ -94,8 +97,10 @@ func move_ball(delta: float) -> void:
 		elif ball.right > playfield.right:
 			ball_direction.x *= -1
 			player_1_score += 1
+			ball_speed_mod += 0.05
 			print("Ball contacted right wall.  Player 1 has %d points." \
 					% player_1_score)
+			print("Ball speed multiplier is at %f" % ball_speed_mod)
 	if ball_direction.y < 0.0:
 		if ball.top < playfield.top:
 			ball_direction.y *= -1
