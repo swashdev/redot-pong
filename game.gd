@@ -24,6 +24,10 @@ const MAX_BOUNCE_ANGLE = 0.872664626
 
 #region Local Variables
 
+# Player score.
+var player_1_score: int = 0
+var player_2_score: int = 0
+
 # The direction that the ball is moving, irrespective of speed.
 var ball_direction: Vector2 = Vector2(-0.5, 0.5)
 
@@ -77,7 +81,9 @@ func move_ball(delta: float) -> void:
 				ball_direction = Vector2.RIGHT.rotated(-dir_rotate)
 		elif ball.left < playfield.left:
 			ball_direction.x *= -1
-			print("Ball contacted left wall.")
+			player_2_score += 1
+			print("Ball contacted left wall.  Player 2 has %d points." \
+					% player_2_score)
 	elif ball_direction.x > 0.0:
 		if ball.right > player_2.left and ball.left < player_2.left:
 			if ball.top < player_2.bottom and ball.bottom > player_2.top:
@@ -87,7 +93,9 @@ func move_ball(delta: float) -> void:
 				ball_direction = Vector2.LEFT.rotated(dir_rotate)
 		elif ball.right > playfield.right:
 			ball_direction.x *= -1
-			print("Ball contacted right wall.")
+			player_1_score += 1
+			print("Ball contacted right wall.  Player 1 has %d points." \
+					% player_1_score)
 	if ball_direction.y < 0.0:
 		if ball.top < playfield.top:
 			ball_direction.y *= -1
