@@ -2,6 +2,9 @@ extends Control
 # The main menu for Redot Pong.
 
 
+signal requested_new_game(two_players: bool)
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Fill out the version number label with comprehensive version data.
