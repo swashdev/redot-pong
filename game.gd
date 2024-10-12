@@ -53,6 +53,9 @@ var target_contact_point: float = randf_range(-10.0, 10.0)
 # A metric of how sluggish the AI is this turn.  Lower numbers slow the AI down.
 var ai_speed_mod: float = 1.0
 
+# How frustrated the AI has become as a result of the player doing well.
+var frustration: int = 0
+
 #endregion AI Variables
 
 #endregion Local Variables
@@ -123,6 +126,11 @@ func move_ball(delta: float) -> void:
 			ball_bounced = BallBounced.RIGHT
 			print("Ball contacted left wall.  Player 2 has %d points." \
 					% player_2_score)
+			if not two_players:
+				# The AI becomes less frustrated if it scores a point.
+				if frustration > -5:
+					frustration -= 1
+					print("Frustration levels at %d" % frustration)
 	elif ball_direction.x > 0.0:
 		if ball.right > player_2.left and ball.left < player_2.left:
 			if ball.top < player_2.bottom and ball.bottom > player_2.top:
@@ -137,6 +145,10 @@ func move_ball(delta: float) -> void:
 			ball_bounced = BallBounced.LEFT
 			print("Ball contacted right wall.  Player 1 has %d points." \
 					% player_1_score)
+			if not two_players:
+				# The AI becomes more frustrated as the player scores points.
+				frustration += 1
+				print("Frustration levels at %d" % frustration)
 	if ball_direction.y < 0.0:
 		if ball.top < playfield.top:
 			ball_direction.y *= -1
@@ -165,9 +177,22 @@ func move_ball(delta: float) -> void:
 		# contact point and speed modifier.
 		if not two_players:
 			if ball_bounced == BallBounced.LEFT:
-				ai_speed_mod = randf_range(0.1, 1.0)
+				var min_ai_speed = clampf(0.1 * frustration, 0.1, 1.0)
+				ai_speed_mod = randf_range(min_ai_speed, 1.0)
 				target_contact_point = \
 						randf_range(-(player_2.extent_y), player_2.extent_y)
+				# If the AI is getting frustrated, it will be more likely to go
+				# for edge shots to try and throw the player off.  This may
+				# result in the AI doing something foolish.
+				if frustration >= 5:
+					if target_contact_point < 0.0:
+						target_contact_point += \
+								randf_range(-(player_2.extent_y + ball.radius), \
+								target_contact_point)
+					else:
+						target_contact_point += \
+								randf_range(target_contact_point, \
+								player_2.extent_y + ball.radius)
 		print("The ball bounced.  New move speed is %f PPS" \
 				% (ball_speed_mod * BASE_BALL_SPEED))
 
