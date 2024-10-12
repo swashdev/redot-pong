@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bdjqslatj4fqm"]
+[gd_scene load_steps=7 format=3 uid="uid://bdjqslatj4fqm"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_1bvp3"]
 [ext_resource type="Script" path="res://rectangles/playfield.gd" id="1_h2yge"]
+[ext_resource type="PackedScene" uid="uid://cei2q28bymy4y" path="res://main_menu.tscn" id="1_lquwl"]
 [ext_resource type="Script" path="res://balls/ball.gd" id="2_1bvp3"]
 [ext_resource type="Script" path="res://rectangles/paddle.gd" id="3_lquwl"]
 
@@ -58,3 +59,7 @@ offset_right = 1026.0
 offset_bottom = 324.0
 label_settings = SubResource("LabelSettings_1bvp3")
 horizontal_alignment = 1
+
+[node name="MainMenu" parent="." instance=ExtResource("1_lquwl")]
+offset_right = 1152.0
+offset_bottom = 648.0
