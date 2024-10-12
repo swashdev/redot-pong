@@ -28,6 +28,9 @@ const MAX_BOUNCE_ANGLE = 1.2217304764
 var player_1_score: int = 0
 var player_2_score: int = 0
 
+# TODO: Implement multiplayer :-)
+var two_players: bool = false
+
 #region Ball Movement
 
 # The direction that the ball is moving, irrespective of speed.
@@ -42,6 +45,16 @@ var ball_speed_increase: float = 0.01
 
 #endregion Ball Movement
 
+#region AI Variables
+
+# The position on the paddle that player 2 wants to hit the ball with.
+var target_contact_point: float = randf_range(-10.0, 10.0)
+
+# A metric of how sluggish the AI is this turn.  Lower numbers slow the AI down.
+var ai_speed_mod: float = 1.0
+
+#endregion AI Variables
+
 #endregion Local Variables
 
 #region Mainloop
@@ -53,6 +66,17 @@ func _process(delta: float) -> void:
 	delta_pos = movement * Input.get_action_strength("ui_down")
 	delta_pos -= movement * Input.get_action_strength("ui_up")
 	move_paddle(player_1, delta_pos)
+
+	# Do AI for the player 2 paddle.
+	if two_players:
+		push_error("2-player mode hasn't been implemented yet :-(")
+	else:
+		var target_contact_y: float = target_contact_point + player_2.position.y
+		#var distance: float = ball.position.y - target_contact_y
+		if ball_direction.x > 0.0:
+			delta_pos = ball.position.y - target_contact_y
+			delta_pos = clampf(delta_pos, -1.0, 1.0) * movement
+			move_paddle(player_2, delta_pos * ai_speed_mod)
 
 	# Move the ball.
 	move_ball(delta)
@@ -137,6 +161,13 @@ func move_ball(delta: float) -> void:
 	# If the ball bounced, its speed will increase.
 	if ball_bounced:
 		ball_speed_mod += ball_speed_increase
+		# If the ball bounced to the left, the AI will choose a new target
+		# contact point and speed modifier.
+		if not two_players:
+			if ball_bounced == BallBounced.LEFT:
+				ai_speed_mod = randf_range(0.1, 1.0)
+				target_contact_point = \
+						randf_range(-(player_2.extent_y), player_2.extent_y)
 		print("The ball bounced.  New move speed is %f PPS" \
 				% (ball_speed_mod * BASE_BALL_SPEED))
 
