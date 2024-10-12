@@ -6,10 +6,10 @@ extends Node2D
 
 # The base speed for the ball & paddle
 const BASE_BALL_SPEED: float = 300.0
-const BASE_PADDLE_SPEED: float = 600.0
+const BASE_PADDLE_SPEED: float = 300.0
 
 # The max angle (in radians) at which the ball will bounce.
-const MAX_BOUNCE_ANGLE = 0.872664626
+const MAX_BOUNCE_ANGLE = 1.2217304764
 
 #endregion Constants
 
@@ -28,11 +28,19 @@ const MAX_BOUNCE_ANGLE = 0.872664626
 var player_1_score: int = 0
 var player_2_score: int = 0
 
+#region Ball Movement
+
 # The direction that the ball is moving, irrespective of speed.
-var ball_direction: Vector2 = Vector2(-0.5, 0.5)
+var ball_direction: Vector2 = Vector2.RIGHT
+
+# Used to determine if the ball has bounced to the left or right this frame.
+enum BallBounced { NO, LEFT, RIGHT }
 
 # A multiplier which is applied to the ball's speed as the player scores.
-var ball_speed_mod: float = 1.0
+var ball_speed_mod: float = 1.5
+var ball_speed_increase: float = 0.01
+
+#endregion Ball Movement
 
 #endregion Local Variables
 
@@ -68,6 +76,8 @@ func move_ball(delta: float) -> void:
 	var contact_point: float
 	var contact_point_normal: float
 	var dir_rotate: float
+	var ball_bounced: int = BallBounced.NO
+
 	ball.position += ball_velocity
 
 	# Reflect the ball off of walls.  If the ball contacts a paddle, its
@@ -82,9 +92,11 @@ func move_ball(delta: float) -> void:
 				contact_point_normal = contact_point / player_1.extent_y
 				dir_rotate = contact_point_normal * MAX_BOUNCE_ANGLE
 				ball_direction = Vector2.RIGHT.rotated(-dir_rotate)
+				ball_bounced = BallBounced.RIGHT
 		elif ball.left < playfield.left:
 			ball_direction.x *= -1
 			player_2_score += 1
+			ball_bounced = BallBounced.RIGHT
 			print("Ball contacted left wall.  Player 2 has %d points." \
 					% player_2_score)
 	elif ball_direction.x > 0.0:
@@ -94,13 +106,13 @@ func move_ball(delta: float) -> void:
 				contact_point_normal = contact_point / player_2.extent_y
 				dir_rotate = contact_point_normal * MAX_BOUNCE_ANGLE
 				ball_direction = Vector2.LEFT.rotated(dir_rotate)
+				ball_bounced = BallBounced.LEFT
 		elif ball.right > playfield.right:
 			ball_direction.x *= -1
 			player_1_score += 1
-			ball_speed_mod += 0.05
+			ball_bounced = BallBounced.LEFT
 			print("Ball contacted right wall.  Player 1 has %d points." \
 					% player_1_score)
-			print("Ball speed multiplier is at %f" % ball_speed_mod)
 	if ball_direction.y < 0.0:
 		if ball.top < playfield.top:
 			ball_direction.y *= -1
@@ -121,6 +133,12 @@ func move_ball(delta: float) -> void:
 		#elif ball.right > player_2.left and ball.right < player_2.right:
 			#if ball.bottom > player_2.top:
 				#ball_direction.y *= -1
+
+	# If the ball bounced, its speed will increase.
+	if ball_bounced:
+		ball_speed_mod += ball_speed_increase
+		print("The ball bounced.  New move speed is %f PPS" \
+				% (ball_speed_mod * BASE_BALL_SPEED))
 
 
 #endregion Mainloop
