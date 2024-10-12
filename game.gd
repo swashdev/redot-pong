@@ -1,7 +1,6 @@
 extends Node2D
 # A node controlling the playfield and game logic for Redot Pong.
 
-
 #region Constants
 
 # The base speed for the ball & paddle
@@ -19,6 +18,8 @@ const MAX_BOUNCE_ANGLE = 1.2217304764
 @onready var ball = $Ball
 @onready var player_1 = $Player1Paddle
 @onready var player_2 = $Player2Paddle
+@onready var player_1_scoreboard = $Player1Score
+@onready var player_2_scoreboard = $Player2Score
 
 #endregion Child Nodes
 
@@ -200,6 +201,13 @@ func score_player(which_player: int) -> void:
 		if not two_players:
 			if frustration > -5:
 				frustration -= 1
+	write_scores()
+
+
+# Writes the players' scores on the playfield.
+func write_scores() -> void:
+	player_1_scoreboard.set_text("%d" % player_1_score)
+	player_2_scoreboard.set_text("%d" % player_2_score)
 
 
 #endregion Mainloop

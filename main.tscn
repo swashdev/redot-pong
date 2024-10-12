@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdjqslatj4fqm"]
+[gd_scene load_steps=6 format=3 uid="uid://bdjqslatj4fqm"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_1bvp3"]
 [ext_resource type="Script" path="res://rectangles/playfield.gd" id="1_h2yge"]
 [ext_resource type="Script" path="res://balls/ball.gd" id="2_1bvp3"]
 [ext_resource type="Script" path="res://rectangles/paddle.gd" id="3_lquwl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1bvp3"]
+font_size = 72
 
 [node name="Main" type="Node2D"]
 metadata/_edit_lock_ = true
@@ -39,3 +42,19 @@ _color = Color(0.18, 0.5, 1, 1)
 extent_x = 10.0
 extent_y = 75.0
 metadata/_edit_lock_ = true
+
+[node name="Player1Score" type="Label" parent="Game"]
+offset_left = 126.0
+offset_top = 84.0
+offset_right = 576.0
+offset_bottom = 324.0
+label_settings = SubResource("LabelSettings_1bvp3")
+horizontal_alignment = 1
+
+[node name="Player2Score" type="Label" parent="Game"]
+offset_left = 576.0
+offset_top = 84.0
+offset_right = 1026.0
+offset_bottom = 324.0
+label_settings = SubResource("LabelSettings_1bvp3")
+horizontal_alignment = 1
