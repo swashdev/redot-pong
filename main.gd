@@ -30,3 +30,8 @@ func _on_game_pause_state_changed(paused: bool) -> void:
 	# If the game has paused, show the menu.
 	if paused:
 		main_menu.show()
+
+
+# Alas, the player has pressed the "Quit Game" button :-(
+func _on_main_menu_requested_quit_game() -> void:
+	get_tree().quit()

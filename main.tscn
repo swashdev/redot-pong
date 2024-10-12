@@ -67,3 +67,4 @@ offset_right = 1152.0
 offset_bottom = 648.0
 
 [connection signal="requested_new_game" from="MainMenu" to="." method="_on_main_menu_requested_new_game"]
+[connection signal="requested_quit_game" from="MainMenu" to="." method="_on_main_menu_requested_quit_game"]

@@ -3,6 +3,7 @@ extends Control
 
 
 signal requested_new_game(two_players: bool)
+signal requested_quit_game
 
 
 # Called when the node enters the scene tree for the first time.

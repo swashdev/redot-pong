@@ -66,6 +66,10 @@ text = "START_GAME"
 layout_mode = 2
 text = "LEGAL_STUFF"
 
+[node name="QuitButton" type="Button" parent="Buttons"]
+layout_mode = 2
+text = "QUIT_GAME"
+
 [node name="LicenseDialog" parent="." instance=ExtResource("1_06t4h")]
 title = "First- and Third-Party Licensing Information"
 initial_position = 1
@@ -83,3 +87,4 @@ text = "VERSION_NUMBER"
 
 [connection signal="pressed" from="Buttons/StartButton" to="." method="emit_signal" binds= ["requested_new_game", false]]
 [connection signal="pressed" from="Buttons/LegalStuffButton" to="LicenseDialog" method="popup"]
+[connection signal="pressed" from="Buttons/QuitButton" to="." method="emit_signal" binds= ["requested_quit_game"]]
