@@ -25,7 +25,7 @@ Global="*res://global.gd"
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://localization/text.en.translation", "res://localization/text.jp.translation", "res://localization/text.pr.translation")
+locale/translations=PackedStringArray("res://localization/text.en.translation", "res://localization/text.ja.translation", "res://localization/text.pr.translation")
 
 [rendering]
 
