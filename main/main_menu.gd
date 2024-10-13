@@ -2,6 +2,7 @@ extends Control
 # The main menu for Redot Pong.
 
 
+signal requested_unpause
 signal requested_new_game(two_players: bool)
 signal requested_quit_game
 

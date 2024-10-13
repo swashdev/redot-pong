@@ -90,6 +90,7 @@ offset_right = 40.0
 grow_vertical = 0
 text = "VERSION_NUMBER"
 
+[connection signal="pressed" from="Buttons/ResumeButton" to="." method="emit_signal" binds= ["requested_unpause"]]
 [connection signal="pressed" from="Buttons/StartButton" to="." method="emit_signal" binds= ["requested_new_game", false]]
 [connection signal="pressed" from="Buttons/LegalStuffButton" to="LicenseDialog" method="popup"]
 [connection signal="pressed" from="Buttons/QuitButton" to="." method="emit_signal" binds= ["requested_quit_game"]]
