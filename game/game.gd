@@ -210,16 +210,25 @@ func move_ball(delta: float) -> void:
 # Incremeents a given player's score.
 func score_player(which_player: int) -> void:
 	assert(which_player < 3 && which_player > 0)
+	var winner: int = 0
 	if which_player == 1:
 		player_1_score += 1
+		if player_1_score >= 10:
+			winner = 1
 		if not two_players:
 			frustration += 1
 	else:
 		player_2_score += 1
+		if player_2_score >= 10:
+			winner = 2
 		if not two_players:
 			if frustration > -5:
 				frustration -= 1
 	write_scores()
+	# If a player has scored more than 10 points, declare a winner.
+	if winner:
+		emit_signal("over", winner)
+		pause()
 
 
 # Writes the players' scores on the playfield.
