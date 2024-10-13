@@ -90,6 +90,15 @@ offset_right = 40.0
 grow_vertical = 0
 text = "VERSION_NUMBER"
 
+[node name="ReallyQuitDialog" type="ConfirmationDialog" parent="."]
+title = "QUIT_WINDOW_TITLE"
+size = Vector2i(259, 100)
+always_on_top = true
+ok_button_text = "QUIT_ACCEPT"
+dialog_text = "QUIT_WINDOW_TEXT"
+dialog_autowrap = true
+cancel_button_text = "QUIT_CANCEL"
+
 [connection signal="pressed" from="Buttons/ResumeButton" to="." method="emit_signal" binds= ["requested_unpause"]]
 [connection signal="pressed" from="Buttons/StartButton" to="." method="emit_signal" binds= ["requested_new_game", false]]
 [connection signal="pressed" from="Buttons/LegalStuffButton" to="LicenseDialog" method="popup"]
