@@ -2,6 +2,17 @@ extends Node
 # Used to handle global variables and functions.
 
 
+#region Configuration
+
+# If set to `true`, a more verobse version number will be given for the Redot
+# Engine.  This is potentially beneficial for tracking down bugs.  For now
+# this defaults to true.
+var report_full_redot_version: bool = true
+
+#endregion Configuration
+
+#region Version Number
+
 const VERSION_MAJOR: int = 0
 const VERSION_MINOR: int = 1
 const VERSION_PATCH: int = 0
@@ -32,3 +43,5 @@ func get_semantic_version() -> String:
 		result += "-" + VERSION_BUILD
 
 	return result
+
+#endregion Version Number
