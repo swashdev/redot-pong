@@ -147,10 +147,14 @@ func move_ball(delta: float) -> void:
 				dir_rotate = contact_point_normal * MAX_BOUNCE_ANGLE
 				ball_direction = Vector2.RIGHT.rotated(-dir_rotate)
 				ball_bounced = BallBounced.RIGHT
+				if Global.color_changing_ball:
+					ball.set_color(player_1.get_color())
 		elif ball.left < playfield.left:
 			ball_direction.x *= -1
 			score_player(2)
 			ball_bounced = BallBounced.RIGHT
+			if Global.color_changing_ball:
+				ball.set_color(playfield.get_border_color())
 	elif ball_direction.x > 0.0:
 		if ball.right > player_2.left and ball.left < player_2.left:
 			if ball.top < player_2.bottom and ball.bottom > player_2.top:
@@ -159,10 +163,14 @@ func move_ball(delta: float) -> void:
 				dir_rotate = contact_point_normal * MAX_BOUNCE_ANGLE
 				ball_direction = Vector2.LEFT.rotated(dir_rotate)
 				ball_bounced = BallBounced.LEFT
+				if Global.color_changing_ball:
+					ball.set_color(player_2.get_color())
 		elif ball.right > playfield.right:
 			ball_direction.x *= -1
 			score_player(1)
 			ball_bounced = BallBounced.LEFT
+			if Global.color_changing_ball:
+				ball.set_color(playfield.get_border_color())
 	if ball_direction.y < 0.0:
 		if ball.top < playfield.top:
 			ball_direction.y *= -1
@@ -269,6 +277,7 @@ func new_game(with_two_players: bool = false) -> void:
 	# select a player to serve to.  In a single-player game it will always
 	# serve to the player.
 	ball.position = Vector2(576, 324)
+	ball.set_color(Color.WHITE)
 	ball.show()
 	if not two_players:
 		ball_direction = Vector2.LEFT

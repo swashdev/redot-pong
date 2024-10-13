@@ -4,6 +4,9 @@ extends Node
 
 #region Configuration
 
+# If set to `true`, the ball will change color when it bounced off of a paddle.
+var color_changing_ball: bool = true
+
 # If set to `true`, a more verobse version number will be given for the Redot
 # Engine.  This is potentially beneficial for tracking down bugs.  For now
 # this defaults to true.
