@@ -227,6 +227,7 @@ func score_player(which_player: int) -> void:
 	write_scores()
 	# If a player has scored more than 10 points, declare a winner.
 	if winner:
+		ball.hide()
 		emit_signal("over", winner)
 		pause()
 
@@ -268,6 +269,7 @@ func new_game(with_two_players: bool = false) -> void:
 	# select a player to serve to.  In a single-player game it will always
 	# serve to the player.
 	ball.position = Vector2(576, 324)
+	ball.show()
 	if not two_players:
 		ball_direction = Vector2.LEFT
 	else:
