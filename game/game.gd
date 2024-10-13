@@ -151,8 +151,6 @@ func move_ball(delta: float) -> void:
 			ball_direction.x *= -1
 			score_player(2)
 			ball_bounced = BallBounced.RIGHT
-			print("Ball contacted left wall.  Player 2 has %d points." \
-					% player_2_score)
 	elif ball_direction.x > 0.0:
 		if ball.right > player_2.left and ball.left < player_2.left:
 			if ball.top < player_2.bottom and ball.bottom > player_2.top:
@@ -165,12 +163,9 @@ func move_ball(delta: float) -> void:
 			ball_direction.x *= -1
 			score_player(1)
 			ball_bounced = BallBounced.LEFT
-			print("Ball contacted right wall.  Player 1 has %d points." \
-					% player_1_score)
 	if ball_direction.y < 0.0:
 		if ball.top < playfield.top:
 			ball_direction.y *= -1
-			print("Ball contacted top wall")
 		#elif ball.left < player_1.right and ball.top > player_1.bottom:
 			#if ball.top < player_1.bottom:
 				#ball_direction.y *= -1
@@ -180,7 +175,6 @@ func move_ball(delta: float) -> void:
 	elif ball_direction.y > 0.0:
 		if ball.bottom > playfield.bottom:
 			ball_direction.y *= -1
-			print("Ball contacted bottom wall")
 		#elif ball.left < player_1.right and ball.left > player_1.left:
 			#if ball.bottom > player_1.top:
 				#ball_direction.y *= -1
@@ -211,8 +205,6 @@ func move_ball(delta: float) -> void:
 						target_contact_point += \
 								randf_range(target_contact_point, \
 								player_2.extent_y + ball.radius)
-		print("The ball bounced.  New move speed is %f PPS" \
-				% (ball_speed_mod * BASE_BALL_SPEED))
 
 
 # Incremeents a given player's score.
