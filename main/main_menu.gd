@@ -2,9 +2,19 @@ extends Control
 # The main menu for Redot Pong.
 
 
+#region Signals
+
+# Note: These signals are only used as middle men between the menu buttons and
+# Main.  Therefore, instead of writing a function to emit the signals, the
+# buttons connect to the `emit_signal` function.
+@warning_ignore("unused_signal")
 signal requested_unpause
+@warning_ignore("unused_signal")
 signal requested_new_game(two_players: bool)
+@warning_ignore("unused_signal")
 signal requested_quit_game
+
+#endregion Signals
 
 
 # Called when the node enters the scene tree for the first time.
