@@ -72,6 +72,7 @@ borderless = true
 popup_window = true
 dialog_text = "D-don't look, baka!"
 
+[connection signal="over" from="Game" to="." method="_on_game_over"]
 [connection signal="requested_new_game" from="MainMenu" to="." method="_on_main_menu_requested_new_game"]
 [connection signal="requested_quit_game" from="MainMenu" to="." method="_on_main_menu_requested_quit_game"]
 [connection signal="requested_unpause" from="MainMenu" to="." method="_on_main_menu_requested_unpause"]
