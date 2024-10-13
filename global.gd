@@ -5,7 +5,7 @@ extends Node
 const VERSION_MAJOR: int = 0
 const VERSION_MINOR: int = 1
 const VERSION_PATCH: int = 0
-const VERSION_BUILD: String = "alpha.1"
+const VERSION_BUILD: String = "alpha.2"
 
 # Returns the version number as a string.
 func get_version_string() -> String:
