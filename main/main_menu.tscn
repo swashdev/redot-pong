@@ -58,9 +58,14 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
+[node name="ResumeButton" type="Button" parent="Buttons"]
+visible = false
+layout_mode = 2
+text = "RESUME_GAME"
+
 [node name="StartButton" type="Button" parent="Buttons"]
 layout_mode = 2
-text = "START_GAME"
+text = "NEW_GAME"
 
 [node name="LegalStuffButton" type="Button" parent="Buttons"]
 layout_mode = 2
