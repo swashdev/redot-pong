@@ -102,4 +102,5 @@ cancel_button_text = "QUIT_CANCEL"
 [connection signal="pressed" from="Buttons/ResumeButton" to="." method="emit_signal" binds= ["requested_unpause"]]
 [connection signal="pressed" from="Buttons/StartButton" to="." method="emit_signal" binds= ["requested_new_game", false]]
 [connection signal="pressed" from="Buttons/LegalStuffButton" to="LicenseDialog" method="popup"]
-[connection signal="pressed" from="Buttons/QuitButton" to="." method="emit_signal" binds= ["requested_quit_game"]]
+[connection signal="pressed" from="Buttons/QuitButton" to="ReallyQuitDialog" method="popup_centered"]
+[connection signal="confirmed" from="ReallyQuitDialog" to="." method="emit_signal" binds= ["requested_quit_game"]]
