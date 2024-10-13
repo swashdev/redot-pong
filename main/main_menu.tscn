@@ -75,11 +75,6 @@ text = "LEGAL_STUFF"
 layout_mode = 2
 text = "QUIT_GAME"
 
-[node name="LicenseDialog" parent="." instance=ExtResource("1_06t4h")]
-title = "First- and Third-Party Licensing Information"
-initial_position = 1
-project_name = "Redot Pong"
-
 [node name="VersionNumberLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 2
@@ -89,6 +84,11 @@ offset_top = -23.0
 offset_right = 40.0
 grow_vertical = 0
 text = "VERSION_NUMBER"
+
+[node name="LicenseDialog" parent="." instance=ExtResource("1_06t4h")]
+title = "First- and Third-Party Licensing Information"
+initial_position = 1
+project_name = "Redot Pong"
 
 [node name="ReallyQuitDialog" type="ConfirmationDialog" parent="."]
 title = "QUIT_WINDOW_TITLE"
@@ -101,6 +101,6 @@ cancel_button_text = "QUIT_CANCEL"
 
 [connection signal="pressed" from="Buttons/ResumeButton" to="." method="emit_signal" binds= ["requested_unpause"]]
 [connection signal="pressed" from="Buttons/StartButton" to="." method="emit_signal" binds= ["requested_new_game", false]]
-[connection signal="pressed" from="Buttons/LegalStuffButton" to="LicenseDialog" method="popup"]
+[connection signal="pressed" from="Buttons/LegalStuffButton" to="LicenseDialog" method="popup_centered"]
 [connection signal="pressed" from="Buttons/QuitButton" to="ReallyQuitDialog" method="popup_centered"]
 [connection signal="confirmed" from="ReallyQuitDialog" to="." method="emit_signal" binds= ["requested_quit_game"]]
