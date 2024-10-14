@@ -16,9 +16,20 @@ signal requested_quit_game
 
 #endregion Signals
 
+#region Buttons
+
+@onready var start_button = $Buttons/StartButton
+@onready var resume_button = $Buttons/ResumeButton
+
+#endregion Buttons
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	connect("visibility_changed", _on_visibility_changed)
+	# The start button should have focus first.
+	start_button.grab_focus()
+
 	# Fill out the version number label with comprehensive version data.
 	var pong_version: String = Global.get_version_string()
 	var info: Dictionary = Engine.get_version_info()
@@ -37,3 +48,15 @@ func _ready() -> void:
 			"running on Redot Engine " + engine_version
 
 	$VersionNumberLabel.set_text(version_text)
+
+
+# Called whenever the menu is hidden or shown.
+func _on_visibility_changed() -> void:
+	if visible:
+		# If the menu just popped up, choose a button to give focus to.
+		# Favor the "Resume" button if it is available; otherwise, the "Start
+		# Game" button.
+		if resume_button.is_visible():
+			resume_button.grab_focus()
+		else:
+			start_button.grab_focus()
