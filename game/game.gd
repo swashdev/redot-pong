@@ -10,6 +10,9 @@ signal all_set
 # Emitted when the game is over.
 signal over(victor: int)
 
+# The game has requested a pause which the main menu needs to be awake for.
+signal requested_menu
+
 #region Signals
 
 #region Constants
@@ -88,7 +91,7 @@ func _process(delta: float) -> void:
 
 	# Pause the game if the player requests it.
 	if Input.is_action_just_pressed("ui_cancel"):
-		pause()
+		pause(true)
 	else:
 		delta_pos = movement * Input.get_action_strength("ui_down")
 		delta_pos -= movement * Input.get_action_strength("ui_up")
@@ -248,9 +251,11 @@ func write_scores() -> void:
 #region Setup
 
 # Pauses the `Game` process, usually to pop up the main menu.
-func pause() -> void:
+func pause(raise_menu: bool = false) -> void:
 	set_process(false)
 	modulate.v = 0.5
+	if raise_menu:
+		emit_signal("requested_menu")
 
 
 # Unpauses.
