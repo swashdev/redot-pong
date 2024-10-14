@@ -2,15 +2,25 @@
 
 [ext_resource type="Script" path="res://addons/swashberry/license_dialog/license_dialog.gd" id="1_1s2wi"]
 
-[node name="LicenseDialog" type="Window"]
+[node name="LicenseDialog" type="AcceptDialog"]
 size = Vector2i(600, 460)
-visible = false
+exclusive = false
+unresizable = true
+popup_window = true
+max_size = Vector2i(600, 460)
+ok_button_text = "CLOSE_DIALOG_BUTTON"
 script = ExtResource("1_1s2wi")
 
 [node name="Container" type="VSplitContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -292.0
+offset_top = -222.0
+offset_right = 292.0
+offset_bottom = 181.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -24,7 +34,6 @@ autowrap_mode = 2
 layout_mode = 2
 allow_reselect = true
 hide_root = true
-drop_mode_flags = 1
 
 [node name="AttributionDialog" type="AcceptDialog" parent="."]
 size = Vector2i(600, 440)

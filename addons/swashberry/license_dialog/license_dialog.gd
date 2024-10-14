@@ -1,4 +1,4 @@
-extends Window
+extends AcceptDialog
 # A dialog which displays a human-readable list of attribution notices.
 
 
