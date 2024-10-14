@@ -5,7 +5,7 @@
 "MESSAGE_YOU_WIN","You\nWin!","御目出度う!","The Ship\nIs Ours!"
 "MESSAGE_PLAYER_WON","Player {num}\nWins!","プレイヤー{num}、\n御目出度う!！",""
 "MESSAGE_GAME_OVER","Game\nOver","ゲーム\nオーバー","Man\nOverboard!"
-"MESSAGE_PRESS_START","Press START to continue","",""
+"MESSAGE_PRESS_START","Press START to continue","「スタート」を押してください。",""
 "RESUME_GAME","Resume","","Raise Anchor"
 "NEW_GAME","Start Game","","Set Sail"
 "LEGAL_STUFF","Legal Stuff","","Plunder"
