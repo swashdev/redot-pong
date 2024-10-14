@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bdjqslatj4fqm"]
+[gd_scene load_steps=10 format=3 uid="uid://bdjqslatj4fqm"]
 
 [ext_resource type="Script" path="res://game/game.gd" id="1_1bvp3"]
 [ext_resource type="Script" path="res://main/main.gd" id="1_7mycd"]
@@ -12,6 +12,12 @@ font_size = 72
 
 [sub_resource type="LabelSettings" id="LabelSettings_kfbq2"]
 font_size = 48
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4dugh"]
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_7mycd")
@@ -97,6 +103,7 @@ offset_bottom = 46.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "MESSAGE_PRESS_START"
+label_settings = SubResource("LabelSettings_4dugh")
 horizontal_alignment = 1
 vertical_alignment = 2
 
