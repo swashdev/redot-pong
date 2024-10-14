@@ -4,8 +4,8 @@ extends Node2D
 
 #region Child Nodes
 
-@onready var main_menu = $MainMenu
-@onready var resume_button = $MainMenu/Buttons/ResumeButton
+@onready var main_menu = $UI/MainMenu
+@onready var resume_button = $UI/MainMenu/Buttons/ResumeButton
 @onready var game = $Game
 @onready var message_box = $MessagePopup
 

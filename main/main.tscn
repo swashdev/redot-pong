@@ -62,9 +62,14 @@ extent_x = 10.0
 extent_y = 75.0
 metadata/_edit_lock_ = true
 
-[node name="MainMenu" parent="." instance=ExtResource("1_lquwl")]
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
 offset_right = 1152.0
 offset_bottom = 648.0
+
+[node name="MainMenu" parent="UI" instance=ExtResource("1_lquwl")]
+layout_mode = 1
 
 [node name="MessagePopup" type="AcceptDialog" parent="."]
 size = Vector2i(100, 106)
@@ -73,6 +78,6 @@ popup_window = true
 dialog_text = "D-don't look, baka!"
 
 [connection signal="over" from="Game" to="." method="_on_game_over"]
-[connection signal="requested_new_game" from="MainMenu" to="." method="_on_main_menu_requested_new_game"]
-[connection signal="requested_quit_game" from="MainMenu" to="." method="_on_main_menu_requested_quit_game"]
-[connection signal="requested_unpause" from="MainMenu" to="." method="_on_main_menu_requested_unpause"]
+[connection signal="requested_new_game" from="UI/MainMenu" to="." method="_on_main_menu_requested_new_game"]
+[connection signal="requested_quit_game" from="UI/MainMenu" to="." method="_on_main_menu_requested_quit_game"]
+[connection signal="requested_unpause" from="UI/MainMenu" to="." method="_on_main_menu_requested_unpause"]
