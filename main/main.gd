@@ -67,11 +67,14 @@ func _on_game_over(victor: int) -> void:
 	resume_button.hide()
 	# Show a message to the player to celebrate and/or rub it in.
 	if two_player_game:
-		message_box.set_text("Player %d\nWins!" % victor)
+		# For the "Player %d Wins!" message, we need to localize the message
+		# explicitly first so we can insert the number into the message.
+		var string: String = tr("MESSAGE_PLAYER_WON")
+		message_box.set_text(string.replace("{num}", "%d" % victor))
 	elif victor == 1:
-		message_box.set_text("You're Winner!")
+		message_box.set_text("MESSAGE_YOU_WIN")
 	else:
-		message_box.set_text("You're Loser!")
+		message_box.set_text("MESSAGE_GAME_OVER")
 	# Pop up the message box and await instructions to close it.
 	message_box.show()
 	awaiting = SHOW_MENU
