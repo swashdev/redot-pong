@@ -19,7 +19,7 @@ var report_full_redot_version: bool = true
 const VERSION_MAJOR: int = 0
 const VERSION_MINOR: int = 1
 const VERSION_PATCH: int = 0
-const VERSION_BUILD: String = "alpha.2"
+const VERSION_BUILD: String = "alpha.3"
 
 # Returns the version number as a string.
 func get_version_string() -> String:

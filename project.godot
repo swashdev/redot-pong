@@ -14,7 +14,6 @@ config/name="Redot Pong"
 config/name_localized={
 "ja_JP": "リードットポン。"
 }
-config/version="0.1.0.0"
 run/main_scene="res://main/main.tscn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
