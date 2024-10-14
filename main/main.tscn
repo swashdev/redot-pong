@@ -25,6 +25,22 @@ extent_x = 450.0
 extent_y = 240.0
 metadata/_edit_lock_ = true
 
+[node name="Player1Score" type="Label" parent="Game"]
+offset_left = 126.0
+offset_top = 84.0
+offset_right = 576.0
+offset_bottom = 324.0
+label_settings = SubResource("LabelSettings_1bvp3")
+horizontal_alignment = 1
+
+[node name="Player2Score" type="Label" parent="Game"]
+offset_left = 576.0
+offset_top = 84.0
+offset_right = 1026.0
+offset_bottom = 324.0
+label_settings = SubResource("LabelSettings_1bvp3")
+horizontal_alignment = 1
+
 [node name="Ball" type="Node2D" parent="Game"]
 position = Vector2(576, 324)
 script = ExtResource("2_1bvp3")
@@ -45,22 +61,6 @@ _color = Color(0.18, 0.5, 1, 1)
 extent_x = 10.0
 extent_y = 75.0
 metadata/_edit_lock_ = true
-
-[node name="Player1Score" type="Label" parent="Game"]
-offset_left = 126.0
-offset_top = 84.0
-offset_right = 576.0
-offset_bottom = 324.0
-label_settings = SubResource("LabelSettings_1bvp3")
-horizontal_alignment = 1
-
-[node name="Player2Score" type="Label" parent="Game"]
-offset_left = 576.0
-offset_top = 84.0
-offset_right = 1026.0
-offset_bottom = 324.0
-label_settings = SubResource("LabelSettings_1bvp3")
-horizontal_alignment = 1
 
 [node name="MainMenu" parent="." instance=ExtResource("1_lquwl")]
 offset_right = 1152.0
