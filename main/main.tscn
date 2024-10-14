@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bdjqslatj4fqm"]
+[gd_scene load_steps=9 format=3 uid="uid://bdjqslatj4fqm"]
 
 [ext_resource type="Script" path="res://game/game.gd" id="1_1bvp3"]
 [ext_resource type="Script" path="res://main/main.gd" id="1_7mycd"]
@@ -9,6 +9,9 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_1bvp3"]
 font_size = 72
+
+[sub_resource type="LabelSettings" id="LabelSettings_kfbq2"]
+font_size = 48
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_7mycd")
@@ -68,14 +71,24 @@ anchors_preset = 0
 offset_right = 1152.0
 offset_bottom = 648.0
 
+[node name="MessageBox" type="Label" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -33.5
+offset_bottom = 33.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "MESSAGE_GET_READY"
+label_settings = SubResource("LabelSettings_kfbq2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="MainMenu" parent="UI" instance=ExtResource("1_lquwl")]
 layout_mode = 1
-
-[node name="MessagePopup" type="AcceptDialog" parent="."]
-size = Vector2i(100, 106)
-borderless = true
-popup_window = true
-dialog_text = "D-don't look, baka!"
 
 [connection signal="over" from="Game" to="." method="_on_game_over"]
 [connection signal="requested_new_game" from="UI/MainMenu" to="." method="_on_main_menu_requested_new_game"]

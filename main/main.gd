@@ -7,7 +7,7 @@ extends Node2D
 @onready var main_menu = $UI/MainMenu
 @onready var resume_button = $UI/MainMenu/Buttons/ResumeButton
 @onready var game = $Game
-@onready var message_box = $MessagePopup
+@onready var message_box = $UI/MessageBox
 
 #endregion Child Nodes
 
@@ -86,7 +86,7 @@ func _on_game_over(victor: int) -> void:
 	else:
 		message_box.set_text("You're Loser!")
 	# Pop up the message box and await instructions to close it.
-	message_box.popup_centered()
+	message_box.show()
 	awaiting = SHOW_MENU
 
 
