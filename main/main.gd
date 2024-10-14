@@ -57,8 +57,10 @@ func _on_main_menu_requested_new_game(two_players: bool) -> void:
 func _on_main_menu_requested_unpause() -> void:
 	# Hide the main menu first.
 	main_menu.hide()
-	# Unpause the game.
-	game.unpause()
+	# Put up a message telling the player to get ready.
+	message_box.set_text("MESSAGE_GET_READY")
+	message_box.show()
+	awaiting = GAME
 
 
 # A game over has occurred and it is time to declare a winner.
