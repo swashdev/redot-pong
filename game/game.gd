@@ -90,7 +90,7 @@ func _process(delta: float) -> void:
 	var movement: float = delta * BASE_PADDLE_SPEED
 
 	# Pause the game if the player requests it.
-	if Input.is_action_just_pressed("ui_cancel"):
+	if Input.is_action_just_pressed("pause"):
 		pause(true)
 	else:
 		delta_pos = movement * Input.get_action_strength("ui_down")

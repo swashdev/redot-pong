@@ -29,7 +29,7 @@ func _input(event) -> void:
 	# We're only listening for input if we are `awaiting` closing the message
 	# box.
 	if awaiting:
-		if event.is_action_released("ui_accept"):
+		if event.is_action_released("start"):
 			# Hide the message box.
 			message_box.hide()
 			# Decide what to do next based on what we were waiting on.
