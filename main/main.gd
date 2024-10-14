@@ -16,12 +16,34 @@ extends Node2D
 # Stores whether or not the current game is two-player.
 var two_player_game: bool = false
 
+# Helps `Main` keep track of what event it is currently anticipating following
+# the closing of the message box.
+var awaiting: int = 0
+enum { GAME = 1, SHOW_MENU = 2 }
+
 #endregion
 
 
 # Initialization
 func _ready() -> void:
 	game.connect("pause_state_changed", _on_game_pause_state_changed)
+
+
+# Listening for input
+func _input(event) -> void:
+	# We're only listening for input if we are `awaiting` closing the message
+	# box.
+	if awaiting:
+		if event.is_action_released("ui_accept"):
+			# Hide the message box.
+			message_box.hide()
+			# Decide what to do next based on what we were waiting on.
+			match awaiting:
+				GAME:
+					game.unpause()
+				SHOW_MENU:
+					main_menu.show()
+			awaiting = 0
 
 
 # The "Start Game" button has been pressed, and it is time to start a new game.
@@ -56,13 +78,16 @@ func _on_game_pause_state_changed(paused: bool) -> void:
 func _on_game_over(victor: int) -> void:
 	# Hide the "resume" button.  We don't need it anymore.
 	resume_button.hide()
+	# Show a message to the player to celebrate and/or rub it in.
 	if two_player_game:
 		message_box.set_text("Player %d\nWins!" % victor)
 	elif victor == 1:
 		message_box.set_text("You're Winner!")
 	else:
 		message_box.set_text("You're Loser!")
+	# Pop up the message box and await instructions to close it.
 	message_box.popup_centered()
+	awaiting = SHOW_MENU
 
 
 # Alas, the player has pressed the "Quit Game" button :-(
