@@ -61,18 +61,32 @@ alignment = 1
 [node name="ResumeButton" type="Button" parent="Buttons"]
 visible = false
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../StartButton")
+focus_next = NodePath("../StartButton")
+focus_previous = NodePath("../QuitButton")
 text = "RESUME_GAME"
 
 [node name="StartButton" type="Button" parent="Buttons"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../ResumeButton")
+focus_neighbor_bottom = NodePath("../LegalStuffButton")
+focus_next = NodePath("../LegalStuffButton")
+focus_previous = NodePath("../ResumeButton")
 text = "NEW_GAME"
 
 [node name="LegalStuffButton" type="Button" parent="Buttons"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../StartButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+focus_next = NodePath("../QuitButton")
+focus_previous = NodePath("../StartButton")
 text = "LEGAL_STUFF"
 
 [node name="QuitButton" type="Button" parent="Buttons"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../LegalStuffButton")
+focus_next = NodePath("../ResumeButton")
+focus_previous = NodePath("../LegalStuffButton")
 text = "QUIT_GAME"
 
 [node name="VersionNumberLabel" type="Label" parent="."]
