@@ -24,11 +24,6 @@ enum { GAME = 1, SHOW_MENU = 2 }
 #endregion
 
 
-# Initialization
-func _ready() -> void:
-	game.connect("pause_state_changed", _on_game_pause_state_changed)
-
-
 # Listening for input
 func _input(event) -> void:
 	# We're only listening for input if we are `awaiting` closing the message
@@ -64,14 +59,6 @@ func _on_main_menu_requested_unpause() -> void:
 	main_menu.hide()
 	# Unpause the game.
 	game.unpause()
-
-
-
-# The game has paused or unpaused.
-func _on_game_pause_state_changed(paused: bool) -> void:
-	# If the game has paused, show the menu.
-	if paused:
-		main_menu.show()
 
 
 # A game over has occurred and it is time to declare a winner.

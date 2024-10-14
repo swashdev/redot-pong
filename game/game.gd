@@ -10,9 +10,6 @@ signal all_set
 # Emitted when the game is over.
 signal over(victor: int)
 
-# Emitted when the game pauses/unpouses
-signal pause_state_changed(paused: bool)
-
 #region Signals
 
 #region Constants
@@ -254,12 +251,10 @@ func write_scores() -> void:
 func pause() -> void:
 	set_process(false)
 	modulate.v = 0.5
-	emit_signal("pause_state_changed", true)
 
 
 # Unpauses.
 func unpause() -> void:
-	emit_signal("pause_state_changed", false)
 	modulate.v = 1.0
 	set_process(true)
 
