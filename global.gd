@@ -19,7 +19,8 @@ var report_full_redot_version: bool = true
 const VERSION_MAJOR: int = 0
 const VERSION_MINOR: int = 1
 const VERSION_PATCH: int = 0
-const VERSION_BUILD: String = "alpha.3"
+const VERSION_BUILD: String = "alpha.4"
+const IS_DEV_BUILD: bool = true
 
 # Returns the version number as a string.
 func get_version_string() -> String:
@@ -30,6 +31,9 @@ func get_version_string() -> String:
 
 	if VERSION_BUILD != "stable" and VERSION_BUILD != "":
 		result += "-" + VERSION_BUILD
+
+	if IS_DEV_BUILD:
+		result += "-dev"
 
 	if VERSION_MAJOR == 1 and VERSION_MINOR == 0:
 		result += " 🥳"
@@ -44,6 +48,9 @@ func get_semantic_version() -> String:
 
 	if VERSION_BUILD != "stable" and VERSION_BUILD != "":
 		result += "-" + VERSION_BUILD
+
+	if IS_DEV_BUILD:
+		result += ".dev"
 
 	return result
 
