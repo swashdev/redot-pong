@@ -24,6 +24,14 @@ enum { GAME = 1, SHOW_MENU = 2 }
 #endregion
 
 
+# Run on initialization
+func _ready() -> void:
+	# Output the version number.
+	var game_name: String = tr("REDOT_PONG")
+	var game_version: String = Global.get_semantic_version()
+	print(game_name + " " + game_version)
+
+
 # Listening for input
 func _input(event) -> void:
 	# We're only listening for input if we are `awaiting` closing the message
