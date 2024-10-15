@@ -22,6 +22,12 @@ const VERSION_PATCH: int = 0
 const VERSION_BUILD: String = "alpha.4"
 const IS_DEV_BUILD: bool = true
 
+
+# Returns `true` if the current build is a prerelease.
+func is_prerelease() -> bool:
+	return IS_DEV_BUILD or (VERSION_BUILD != "" and VERSION_BUILD != "stable")
+
+
 # Returns the version number as a string.
 func get_version_string() -> String:
 	var result: String = "%d.%d" % [VERSION_MAJOR, VERSION_MINOR]
