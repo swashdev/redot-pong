@@ -30,6 +30,9 @@ func _ready() -> void:
 	var game_name: String = tr("REDOT_PONG")
 	var game_version: String = Global.get_semantic_version()
 	print(game_name + " " + game_version)
+	# Output an additional half-warning if this is a dev build.
+	if Global.IS_DEV_BUILD:
+		print(tr("DEV_BUILD_MESSAGE"))
 
 
 # Listening for input

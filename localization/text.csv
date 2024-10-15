@@ -16,3 +16,4 @@
 "QUIT_CANCEL","No","","Nay!"
 "LICENSE_SCREEN_INFO","Clicking one of the buttons below will display licensing information for individual components of Redot Pong and the engine it is built on, the Redot Engine. The full text of each license can be found by scrolling to the bottom.","","Arrrrr!  Despite how it may appearrr, this here booty was all acquired legally!  If ye be a law-abidin' landlubber, ye can check fer yerself by clickin' the buttons below decks!"
 "CLOSE_DIALOG_BUTTON","Close","",""
+"DEV_BUILD_MESSAGE","NOTE: This is a development build and is not intended for release.  It should be treated as an unstable test build.","",""
