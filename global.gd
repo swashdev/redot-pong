@@ -36,9 +36,10 @@ func get_semantic_version() -> String:
 
 	if VERSION_BUILD != "stable" and VERSION_BUILD != "":
 		result += "-" + VERSION_BUILD
-
-	if IS_DEV_BUILD:
-		result += ".dev"
+		if IS_DEV_BUILD:
+			result += ".dev"
+	elif IS_DEV_BUILD:
+		result += "-dev"
 
 	return result
 
