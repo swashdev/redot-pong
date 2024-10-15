@@ -89,6 +89,10 @@ focus_next = NodePath("../ResumeButton")
 focus_previous = NodePath("../LegalStuffButton")
 text = "QUIT_GAME"
 
+[node name="DebugMenuButton" type="Button" parent="Buttons"]
+layout_mode = 2
+text = "MENU_BUTTON_DEBUG"
+
 [node name="VersionNumberLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 2

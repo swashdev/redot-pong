@@ -10,6 +10,7 @@
 "NEW_GAME","Start Game","","Set Sail"
 "LEGAL_STUFF","Legal Stuff","","Plunder"
 "QUIT_GAME","Quit Game","","Abandon Ship"
+"MENU_BUTTON_DEBUG","Debug Menu","","Repair the Ship"
 "QUIT_WINDOW_TITLE","Really Quit?","","Abandon Ship?"
 "QUIT_WINDOW_TEXT","Are you sure you want to quit?","","Think of the booty!"
 "QUIT_ACCEPT","Yes","","Aye"
