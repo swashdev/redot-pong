@@ -28,26 +28,8 @@ func is_prerelease() -> bool:
 	return IS_DEV_BUILD or (VERSION_BUILD != "" and VERSION_BUILD != "stable")
 
 
-# Returns the version number as a string.
-func get_version_string() -> String:
-	var result: String = "%d.%d" % [VERSION_MAJOR, VERSION_MINOR]
-
-	if VERSION_PATCH > 0 or VERSION_MAJOR < 1:
-		result += ".%d" % VERSION_PATCH
-
-	if VERSION_BUILD != "stable" and VERSION_BUILD != "":
-		result += "-" + VERSION_BUILD
-
-	if IS_DEV_BUILD:
-		result += "-dev"
-
-	if VERSION_MAJOR == 1 and VERSION_MINOR == 0:
-		result += " 🥳"
-
-	return result
-
 # Returns the version number as a string following the semantic versioning
-# standard.  Essentially `get_version_string` but longer.
+# standard.  More technical and more terse than `get_nice_version`.
 func get_semantic_version() -> String:
 	var result: String = "%d.%d.%d" % [VERSION_MAJOR, VERSION_MINOR, \
 			VERSION_PATCH]
@@ -57,6 +39,31 @@ func get_semantic_version() -> String:
 
 	if IS_DEV_BUILD:
 		result += ".dev"
+
+	return result
+
+
+# Returns the version number as a string.  The output is verbose and intended
+# to be human-readable and pleasant.
+func get_nice_version() -> String:
+	var result: String = "%d.%d" % [VERSION_MAJOR, VERSION_MINOR]
+
+	if VERSION_PATCH > 0:
+		result += ".%d" % VERSION_PATCH
+
+	if is_prerelease():
+		var prerelease_data: PackedStringArray = VERSION_BUILD.split(".", false)
+		for element in prerelease_data:
+			if element == "stable":
+				break
+			elif element == "rc":
+				result += " Release Candidate"
+			else:
+				result += " " + element.capitalize()
+		if IS_DEV_BUILD:
+			result += " (dev build)"
+	elif result == "1.0":
+		result += " 🥳"
 
 	return result
 

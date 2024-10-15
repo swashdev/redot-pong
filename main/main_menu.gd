@@ -31,7 +31,7 @@ func _ready() -> void:
 	start_button.grab_focus()
 
 	# Fill out the version number label with comprehensive version data.
-	var pong_version: String = Global.get_version_string()
+	var pong_version: String = Global.get_nice_version()
 	var info: Dictionary = Engine.get_version_info()
 	var engine_version: String
 	if not Global.report_full_redot_version:
