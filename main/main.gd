@@ -21,8 +21,7 @@ var two_player_game: bool = false
 var awaiting: int = 0
 enum { GAME = 1, SHOW_MENU = 2 }
 
-#endregion
-
+#endregion Game Data
 
 # Run on initialization
 func _ready() -> void:
@@ -34,6 +33,7 @@ func _ready() -> void:
 	if Global.IS_DEV_BUILD:
 		print(tr("DEV_BUILD_MESSAGE"))
 
+#region Game Logic
 
 # Listening for input
 func _input(event) -> void:
@@ -51,6 +51,28 @@ func _input(event) -> void:
 					main_menu.show()
 			awaiting = 0
 
+
+# A game over has occurred and it is time to declare a winner.
+func _on_game_over(victor: int) -> void:
+	# Hide the "resume" button.  We don't need it anymore.
+	resume_button.hide()
+	# Show a message to the player to celebrate and/or rub it in.
+	if two_player_game:
+		# For the "Player %d Wins!" message, we need to localize the message
+		# explicitly first so we can insert the number into the message.
+		var string: String = tr("MESSAGE_PLAYER_WON")
+		message_box.set_text(string.replace("{num}", "%d" % victor))
+	elif victor == 1:
+		message_box.set_text("MESSAGE_YOU_WIN")
+	else:
+		message_box.set_text("MESSAGE_GAME_OVER")
+	# Pop up the message box and await instructions to close it.
+	message_box.show()
+	awaiting = SHOW_MENU
+
+#endregion Game Logic
+
+#region Menu Buttons
 
 # The "Start Game" button has been pressed, and it is time to start a new game.
 func _on_main_menu_requested_new_game(two_players: bool) -> void:
@@ -74,25 +96,8 @@ func _on_main_menu_requested_unpause() -> void:
 	awaiting = GAME
 
 
-# A game over has occurred and it is time to declare a winner.
-func _on_game_over(victor: int) -> void:
-	# Hide the "resume" button.  We don't need it anymore.
-	resume_button.hide()
-	# Show a message to the player to celebrate and/or rub it in.
-	if two_player_game:
-		# For the "Player %d Wins!" message, we need to localize the message
-		# explicitly first so we can insert the number into the message.
-		var string: String = tr("MESSAGE_PLAYER_WON")
-		message_box.set_text(string.replace("{num}", "%d" % victor))
-	elif victor == 1:
-		message_box.set_text("MESSAGE_YOU_WIN")
-	else:
-		message_box.set_text("MESSAGE_GAME_OVER")
-	# Pop up the message box and await instructions to close it.
-	message_box.show()
-	awaiting = SHOW_MENU
-
-
 # Alas, the player has pressed the "Quit Game" button :-(
 func _on_main_menu_requested_quit_game() -> void:
 	get_tree().quit()
+
+#endregion Menu Buttons
