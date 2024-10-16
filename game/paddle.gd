@@ -21,10 +21,7 @@ extends RedotPongRect
 # Initialization
 func _ready() -> void:
 	# Initialize the paddle's rectangle.
-	# Note that the position is negative because it's declared relative to the
-	# paddle's center.
-	_rect = Rect2(-extent_x, -extent_y, \
-			extent_x * 2, extent_y * 2)
+	_recalc_rect()
 
 
 # Draws the paddle at its current position.
@@ -39,12 +36,20 @@ func _draw() -> void:
 
 func set_half_width(value: float) -> void:
 	super(value)
-	queue_redraw()
+	_recalc_rect()
 
 func set_half_height(value: float) -> void:
 	super(value)
-	queue_redraw()
+	_recalc_rect()
 
+
+# Recalculate `_rect` based on the given `extent_y` and `extent_x` values.
+func _recalc_rect() -> void:
+	# Note that the position is negative because it's declared relative to the
+	# paddle's center.
+	_rect = Rect2(-extent_x, -extent_y, \
+			extent_x * 2, extent_y * 2)
+	queue_redraw()
 
 func get_rect() -> Rect2:
 	return _rect
