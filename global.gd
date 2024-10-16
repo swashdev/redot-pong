@@ -69,3 +69,25 @@ func get_nice_version() -> String:
 	return result
 
 #endregion Version Number
+
+#region Settings Menu
+
+# This enum is used to determine what settings have been changed by the Options
+# or Debug menu.
+enum Setting \
+{
+	# This is a dummy value.  Values >= `DEBUG` are reserved for the debug menu
+	# and may affect game scoring.
+	DEBUG = 100,
+	DEBUG_PADDLE_1_HEIGHT = 101,
+	DEBUG_PADDLE_1_WIDTH = 102,
+	DEBUG_PADDLE_2_HEIGHT = 103,
+	DEBUG_PADDLE_2_WIDTH = 104,
+	DEBUG_BALL_RADIUS = 105,
+	DEBUG_SCORING_PLAYER_1 = 106,
+	DEBUG_SCORING_PLAYER_2 = 107,
+	DEBUG_COLLISION_PLAYER_1 = 108,
+	DEBUG_COLLISION_PLAYER_2 = 109,
+}
+
+#endregion Settings Menu
