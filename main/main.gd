@@ -6,8 +6,10 @@ extends Node2D
 
 @onready var main_menu = $UI/MainMenu
 @onready var resume_button = $UI/MainMenu/Buttons/ResumeButton
+@onready var debug_menu_button = $UI/MainMenu/Buttons/DebugMenuButton
 @onready var game = $Game
 @onready var message_box = $UI/MessageBox
+@onready var debug_menu = $UI/DebugMenu
 
 #endregion Child Nodes
 
@@ -32,6 +34,7 @@ func _ready() -> void:
 	# Output an additional half-warning if this is a dev build.
 	if Global.IS_DEV_BUILD:
 		print(tr("DEV_BUILD_MESSAGE"))
+	debug_menu_button.connect("pressed", debug_menu.popup_centered)
 
 #region Game Logic
 

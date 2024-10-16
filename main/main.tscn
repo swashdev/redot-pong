@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bdjqslatj4fqm"]
+[gd_scene load_steps=11 format=3 uid="uid://bdjqslatj4fqm"]
 
 [ext_resource type="Script" path="res://game/game.gd" id="1_1bvp3"]
 [ext_resource type="Script" path="res://main/main.gd" id="1_7mycd"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cei2q28bymy4y" path="res://main/main_menu.tscn" id="1_lquwl"]
 [ext_resource type="Script" path="res://game/ball.gd" id="2_1bvp3"]
 [ext_resource type="Script" path="res://game/paddle.gd" id="3_lquwl"]
+[ext_resource type="PackedScene" uid="uid://cp8pan80nt2um" path="res://main/settings/debug_menu.tscn" id="7_4dugh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1bvp3"]
 font_size = 72
@@ -109,6 +110,8 @@ vertical_alignment = 2
 
 [node name="MainMenu" parent="UI" instance=ExtResource("1_lquwl")]
 layout_mode = 1
+
+[node name="DebugMenu" parent="UI" instance=ExtResource("7_4dugh")]
 
 [connection signal="over" from="Game" to="." method="_on_game_over"]
 [connection signal="requested_menu" from="Game" to="UI/MainMenu" method="show"]
