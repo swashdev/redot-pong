@@ -5,7 +5,6 @@
 [node name="SettingsMenuBase" type="ConfirmationDialog"]
 title = "SETTINGS_MENU_TITLE"
 size = Vector2i(542, 298)
-visible = true
 max_size = Vector2i(600, 460)
 ok_button_text = "SETTINGS_MENU_CONFIRM"
 dialog_hide_on_ok = false
