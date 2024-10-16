@@ -245,6 +245,18 @@ step = 0.1
 value = 0.1
 allow_greater = true
 
+[node name="AIFrustrationErrorLabel" type="Label" parent="ScrollContainer/GridContainer" index="34"]
+layout_mode = 2
+text = "DEBUG_MENU_LABEL_AI_ERROR"
+
+[node name="AIFrustrationErrorEdit" type="SpinBox" parent="ScrollContainer/GridContainer" index="35"]
+layout_mode = 2
+max_value = 20.0
+step = 0.5
+value = 10.0
+allow_greater = true
+suffix = "px"
+
 [connection signal="value_changed" from="ScrollContainer/GridContainer/PaddleSpeedEdit" to="." method="_on_setting_changed" binds= [110]]
 [connection signal="value_changed" from="ScrollContainer/GridContainer/Paddle1HeightEdit" to="." method="_on_setting_changed" binds= [101]]
 [connection signal="value_changed" from="ScrollContainer/GridContainer/Paddle1WidthEdit" to="." method="_on_setting_changed" binds= [102]]
@@ -273,3 +285,4 @@ allow_greater = true
 [connection signal="value_changed" from="ScrollContainer/GridContainer/AIFrustrationIncreaseEdit" to="." method="_on_setting_changed" binds= [121]]
 [connection signal="value_changed" from="ScrollContainer/GridContainer/AIFrustrationThresholdEdit" to="." method="_on_setting_changed" binds= [122]]
 [connection signal="value_changed" from="ScrollContainer/GridContainer/AIFrustrationModEdit" to="." method="_on_setting_changed" binds= [123]]
+[connection signal="value_changed" from="ScrollContainer/GridContainer/AIFrustrationErrorEdit" to="." method="_on_setting_changed" binds= [124]]

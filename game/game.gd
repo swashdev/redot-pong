@@ -87,6 +87,7 @@ var starting_frustration: int = 0
 var frustration_increase: int = 1
 var frustration_threshold: int = 5
 var frustration_multiplier: float = 0.1
+var frustration_error: float = 10.0
 
 #endregion AI Variables
 
@@ -229,12 +230,12 @@ func move_ball(delta: float) -> void:
 				if ai_frustration and frustration >= frustration_threshold:
 					if target_contact_point < 0.0:
 						target_contact_point += \
-								randf_range(-(player_2.extent_y + ball.radius), \
-								target_contact_point)
+								randf_range(-(player_2.extent_y + \
+								frustration_error), target_contact_point)
 					else:
 						target_contact_point += \
 								randf_range(target_contact_point, \
-								player_2.extent_y + ball.radius)
+								player_2.extent_y + frustration_error)
 
 
 # Incremeents a given player's score.

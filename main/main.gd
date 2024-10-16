@@ -201,6 +201,9 @@ func _handle_settings_changes(from: Node, num_changes: int) -> void:
 				Global.Setting.DEBUG_AI_FRUSTRATION_MULTIPLIER:
 					game.frustration_multiplier = value
 					report_set.call("AI frustration multiplier", value)
+				Global.Setting.DEBUG_AI_FRUSTRATION_ERROR:
+					game.frustration_error = value
+					report_set.call("AI frustration error", value)
 #endregion Match of Doom
 				_:
 					# If the key is invalid, throw a warning and ignore it.

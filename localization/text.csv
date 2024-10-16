@@ -44,3 +44,4 @@
 "DEBUG_MENU_LABEL_AI_INCREASE","Frustration Increase","",""
 "DEBUG_MENU_LABEL_AI_THRESHOLD","Frustration Threshold","",""
 "DEBUG_MENU_LABEL_AI_MULTIPLIER","Frustration Speed Multiplier","",""
+"DEBUG_MENU_LABEL_AI_ERROR","Frustration Error","",""
