@@ -104,3 +104,69 @@ func _on_main_menu_requested_quit_game() -> void:
 	get_tree().quit()
 
 #endregion Menu Buttons
+
+#region Settings
+
+# Handles the changes that have occurred as a result of the player saving
+# their settings.  The specific behavior will be different depending on which
+# window the settings were saved `from`.
+func _handle_settings_changes(from: Node, num_changes: int) -> void:
+	# It's possible that `num_changes` will be zero despite there being cached
+	# changes.
+	if num_changes > 0:
+		# Grab the keys for the changed settings.
+		var keys: Array = from.changed.keys()
+		assert(keys.size() == num_changes)
+
+		var value: Variant
+		var player_1 = game.get_node("Player1Paddle")
+		var player_2 = game.get_node("Player2Paddle")
+		var ball = game.get_node("Ball")
+		var report_set = func(s: String, v: Variant) -> void:
+			print(s + " set to " + str(v))
+		var report_on_off = func(s: String, b: bool) -> void:
+			print(s + " " + ("ON" if b else "OFF"))
+		for key in keys:
+			# For every `key` in the dictionary, grab the value from that key
+			# and decide what to do with it.
+			value = from.changed[key]
+			match key:
+				Global.Setting.DEBUG_PADDLE_1_HEIGHT:
+					player_1.extent_y = value / 2
+					report_set.call("Player 1 height", value)
+				Global.Setting.DEBUG_PADDLE_1_WIDTH:
+					player_1.extent_x = value / 2
+					report_set.call("Player 1 width", value)
+				Global.Setting.DEBUG_PADDLE_2_HEIGHT:
+					player_2.extent_y = value / 2
+					report_set.call("Player 2 height", value)
+				Global.Setting.DEBUG_PADDLE_2_WIDTH:
+					player_2.extent_x = value / 2
+					report_set.call("Player 2 width", value)
+				Global.Setting.DEBUG_BALL_RADIUS:
+					ball.radius = value
+					report_set.call("Ball radius", value)
+				Global.Setting.DEBUG_SCORING_PLAYER_1:
+					game.player_1_scoring = value
+					report_on_off.call("Player 1 scoring", value)
+				Global.Setting.DEBUG_SCORING_PLAYER_2:
+					game.player_2_scoring = value
+					report_on_off.call("Player 2 scoring", value)
+				Global.Setting.DEBUG_COLLISION_PLAYER_1:
+					game.player_1_collision = value
+					report_on_off.call("Player 1 collision", value)
+				Global.Setting.DEBUG_COLLISION_PLAYER_2:
+					game.player_2_collision = value
+					report_on_off.call("Player 2 collision", value)
+				_:
+					# If the key is invalid, throw a warning and ignore it.
+					push_warning("Invalid key %d sent by settings menu!" % key)
+	# At the end of the operation, clear the cached changes.
+	from.clear_changes()
+
+
+# The Debug Menu has requested that we save the player's debug settings.
+func _on_debug_menu_requested_save(num_changes: int) -> void:
+	_handle_settings_changes(debug_menu, num_changes)
+
+#endregion Settings
