@@ -131,6 +131,7 @@ func _handle_settings_changes(from: Node, num_changes: int) -> void:
 			# and decide what to do with it.
 			value = from.changed[key]
 			match key:
+#region Match of Doom
 				Global.Setting.DEBUG_PADDLE_1_HEIGHT:
 					player_1.extent_y = value / 2
 					report_set.call("Player 1 height", value)
@@ -158,6 +159,49 @@ func _handle_settings_changes(from: Node, num_changes: int) -> void:
 				Global.Setting.DEBUG_COLLISION_PLAYER_2:
 					game.player_2_collision = value
 					report_on_off.call("Player 2 collision", value)
+				Global.Setting.DEBUG_BASE_PADDLE_SPEED:
+					game.base_paddle_speed = value
+					report_set.call("Base paddle speed", value)
+				Global.Setting.DEBUG_BASE_BALL_SPEED:
+					game.base_ball_speed = value
+					report_set.call("Base ball speed", value)
+				Global.Setting.DEBUG_BALL_SPEED_MODIFIER:
+					game.starting_ball_speed_mod = value
+					report_set.call("Starting ball speed multiplier", value)
+				Global.Setting.DEBUG_BALL_SPEED_MOD_INCREASE:
+					game.ball_speed_increase = value
+					report_set.call("Ball speed multiplier increase", value)
+				Global.Setting.DEBUG_BALL_MAX_BOUNCE_ANGLE:
+					game.max_bounce_angle = value
+					report_set.call("Max bounce angle", value)
+				Global.Setting.DEBUG_AI_MIN_SPEED_MOD:
+					game.ai_min_speed = value
+					report_set.call("AI minimum speed multiplier", value)
+				Global.Setting.DEBUG_AI_MAX_SPEED_MOD:
+					game.ai_max_speed = value
+					report_set.call("AI maximum speed multiplier", value)
+				Global.Setting.DEBUG_AI_FRUSTRATION:
+					game.ai_frustration = value
+					report_on_off.call("AI frustration", value)
+				Global.Setting.DEBUG_AI_MIN_FRUSTRATION:
+					game.min_frustration = value
+					report_set.call("Min AI frustration", value)
+				Global.Setting.DEBUG_AI_MAX_FRUSTRATION:
+					game.max_frustration = value
+					report_set.call("Max AI frustration", value)
+				Global.Setting.DEBUG_AI_START_FRUSTRATION:
+					game.starting_frustration = value
+					report_set.call("Starting AI frustration", value)
+				Global.Setting.DEBUG_AI_FRUSTRATION_INCREASE:
+					game.frustration_increase = value
+					report_set.call("AI frustration increase", value)
+				Global.Setting.DEBUG_AI_FRUSTRATION_THRESHOLD:
+					game.frustration_threshold = value
+					report_set.call("AI frustration threshold", value)
+				Global.Setting.DEBUG_AI_FRUSTRATION_MULTIPLIER:
+					game.frustration_multiplier = value
+					report_set.call("AI frustration multiplier", value)
+#endregion Match of Doom
 				_:
 					# If the key is invalid, throw a warning and ignore it.
 					push_warning("Invalid key %d sent by settings menu!" % key)
