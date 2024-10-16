@@ -82,8 +82,18 @@ var ai_min_speed: float = 0.1
 var ai_max_speed: float = 1.0
 # Set to `false` to turn off AI frustration.
 var ai_frustration: bool = true
-var min_frustration: int = -5
-var max_frustration: int = 100
+var min_frustration: int = -5:
+	set(value):
+		min_frustration = value
+		if frustration < value:
+			frustration = value
+			print("The AI has achieved zen")
+var max_frustration: int = 100:
+	set(value):
+		max_frustration = value
+		if frustration > max_frustration:
+			frustration = value
+			print("The AI is at MAX FRUSTRATION!")
 var starting_frustration: int = 0
 var frustration_increase: int = 1
 var frustration_threshold: int = 5
