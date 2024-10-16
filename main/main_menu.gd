@@ -27,10 +27,13 @@ signal requested_quit_game
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	connect("visibility_changed", _on_visibility_changed)
+	update_version_number()
 	# The start button should have focus first.
 	start_button.grab_focus()
 
-	# Fill out the version number label with comprehensive version data.
+
+# Fill out the version number label with comprehensive version data.
+func update_version_number() -> void:
 	var pong_version: String = Global.get_nice_version()
 	var info: Dictionary = Engine.get_version_info()
 	var engine_version: String
