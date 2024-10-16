@@ -248,7 +248,8 @@ func score_player(which_player: int) -> void:
 		if player_1_score >= winning_score:
 			winner = 1
 		if (not two_players) and ai_frustration:
-			frustration += frustration_increase
+			if frustration < max_frustration:
+				frustration += frustration_increase
 	else:
 		player_2_score += 1
 		if player_2_score >= winning_score:
