@@ -4,12 +4,30 @@
 
 [node name="DebugMenu" instance=ExtResource("1_dxt7l")]
 title = "DEBUG_MENU_TITLE"
+position = Vector2i(0, 36)
+size = Vector2i(600, 460)
+visible = true
 
-[node name="Paddle1HeightLabel" type="Label" parent="GridContainer" index="0"]
+[node name="GridContainer" parent="." index="3"]
+offset_right = 13.0
+offset_bottom = 139.0
+
+[node name="PaddleSpeedLabel" type="Label" parent="GridContainer" index="0"]
+layout_mode = 2
+text = "DEBUG_MENU_LABEL_PADDLE_SPEED"
+
+[node name="PaddleSpeedEdit" type="SpinBox" parent="GridContainer" index="1"]
+layout_mode = 2
+max_value = 600.0
+value = 300.0
+allow_greater = true
+suffix = "px/sec"
+
+[node name="Paddle1HeightLabel" type="Label" parent="GridContainer" index="2"]
 layout_mode = 2
 text = "DEBUG_MENU_LABEL_PADDLE_1_HEIGHT"
 
-[node name="Paddle1HeightEdit" type="SpinBox" parent="GridContainer" index="1"]
+[node name="Paddle1HeightEdit" type="SpinBox" parent="GridContainer" index="3"]
 layout_mode = 2
 min_value = 2.0
 max_value = 300.0
@@ -18,11 +36,11 @@ value = 150.0
 allow_greater = true
 suffix = "px"
 
-[node name="Paddle1WidthLabel" type="Label" parent="GridContainer" index="2"]
+[node name="Paddle1WidthLabel" type="Label" parent="GridContainer" index="4"]
 layout_mode = 2
 text = "DEBUG_MENU_LABEL_PADDLE_1_WIDTH"
 
-[node name="Paddle1WidthEdit" type="SpinBox" parent="GridContainer" index="3"]
+[node name="Paddle1WidthEdit" type="SpinBox" parent="GridContainer" index="5"]
 layout_mode = 2
 min_value = 2.0
 max_value = 40.0
@@ -31,11 +49,11 @@ value = 20.0
 allow_greater = true
 suffix = "px"
 
-[node name="Paddle2HeightLabel" type="Label" parent="GridContainer" index="4"]
+[node name="Paddle2HeightLabel" type="Label" parent="GridContainer" index="6"]
 layout_mode = 2
 text = "DEBUG_MENU_LABEL_PADDLE_2_HEIGHT"
 
-[node name="Paddle2HeightEdit" type="SpinBox" parent="GridContainer" index="5"]
+[node name="Paddle2HeightEdit" type="SpinBox" parent="GridContainer" index="7"]
 layout_mode = 2
 min_value = 2.0
 max_value = 300.0
@@ -44,11 +62,11 @@ value = 150.0
 allow_greater = true
 suffix = "px"
 
-[node name="Paddle2WidthLabel" type="Label" parent="GridContainer" index="6"]
+[node name="Paddle2WidthLabel" type="Label" parent="GridContainer" index="8"]
 layout_mode = 2
 text = "DEBUG_MENU_LABEL_PADDLE_2_WIDTH"
 
-[node name="Paddle2WidthEdit" type="SpinBox" parent="GridContainer" index="7"]
+[node name="Paddle2WidthEdit" type="SpinBox" parent="GridContainer" index="9"]
 layout_mode = 2
 min_value = 2.0
 max_value = 40.0
@@ -57,11 +75,11 @@ value = 20.0
 allow_greater = true
 suffix = "px"
 
-[node name="BallRadiusLabel" type="Label" parent="GridContainer" index="8"]
+[node name="BallRadiusLabel" type="Label" parent="GridContainer" index="10"]
 layout_mode = 2
 text = "DEBUG_MENU_LABEL_BALL_RADIUS"
 
-[node name="BallRadiusEdit" type="SpinBox" parent="GridContainer" index="9"]
+[node name="BallRadiusEdit" type="SpinBox" parent="GridContainer" index="11"]
 layout_mode = 2
 min_value = 1.0
 max_value = 20.0
@@ -69,11 +87,46 @@ value = 10.0
 allow_greater = true
 suffix = "px"
 
-[node name="ScoringLabel" type="Label" parent="GridContainer" index="10"]
+[node name="BallBaseSpeedLabel" type="Label" parent="GridContainer" index="12"]
+layout_mode = 2
+text = "DEBUG_MENU_LABEL_BALL_SPEED"
+
+[node name="BallBaseSpeedEdit" type="SpinBox" parent="GridContainer" index="13"]
+layout_mode = 2
+max_value = 600.0
+value = 300.0
+allow_greater = true
+suffix = "px/sec"
+
+[node name="BallSpeedModLabel" type="Label" parent="GridContainer" index="14"]
+layout_mode = 2
+text = "DEBUG_MENU_LABEL_BALL_SPEED_MOD"
+
+[node name="BallSpeedModEdit" type="SpinBox" parent="GridContainer" index="15"]
+layout_mode = 2
+max_value = 2.0
+step = 0.1
+value = 1.5
+allow_greater = true
+suffix = "x"
+
+[node name="BallSpeedModIncLabel" type="Label" parent="GridContainer" index="16"]
+layout_mode = 2
+text = "DEBUG_MENU_LABEL_BALL_SPEED_MOD_INCREASE"
+
+[node name="BallSpeedModIncEdit" type="SpinBox" parent="GridContainer" index="17"]
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+value = 0.1
+allow_greater = true
+suffix = "x"
+
+[node name="ScoringLabel" type="Label" parent="GridContainer" index="18"]
 layout_mode = 2
 text = "DEBUG_MENU_LABEL_SCORING"
 
-[node name="ScoringEdit" type="HBoxContainer" parent="GridContainer" index="11"]
+[node name="ScoringEdit" type="HBoxContainer" parent="GridContainer" index="19"]
 layout_mode = 2
 
 [node name="Player1" type="CheckBox" parent="GridContainer/ScoringEdit" index="0"]
@@ -86,11 +139,11 @@ layout_mode = 2
 button_pressed = true
 text = "PLAYER_2"
 
-[node name="CollisionLabel" type="Label" parent="GridContainer" index="12"]
+[node name="CollisionLabel" type="Label" parent="GridContainer" index="20"]
 layout_mode = 2
 text = "DEBUG_MENU_LABEL_COLLISION"
 
-[node name="CollisionEdit" type="HBoxContainer" parent="GridContainer" index="13"]
+[node name="CollisionEdit" type="HBoxContainer" parent="GridContainer" index="21"]
 layout_mode = 2
 
 [node name="Player1" type="CheckBox" parent="GridContainer/CollisionEdit" index="0"]
@@ -103,12 +156,121 @@ layout_mode = 2
 button_pressed = true
 text = "PLAYER_2"
 
+[node name="AISpeedModLabel" type="Label" parent="GridContainer" index="22"]
+layout_mode = 2
+text = "DEBUG_MENU_LABEL_AI_SPEED"
+
+[node name="AISpeedModEdit" type="HBoxContainer" parent="GridContainer" index="23"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Min" type="SpinBox" parent="GridContainer/AISpeedModEdit" index="0"]
+layout_mode = 2
+max_value = 2.0
+step = 0.1
+value = 0.1
+allow_greater = true
+prefix = "Min:"
+
+[node name="Max" type="SpinBox" parent="GridContainer/AISpeedModEdit" index="1"]
+layout_mode = 2
+max_value = 2.0
+step = 0.1
+value = 1.0
+allow_greater = true
+prefix = "Max:"
+
+[node name="AIFrustrationToggle" type="CheckButton" parent="GridContainer" index="24"]
+layout_mode = 2
+button_pressed = true
+text = "DEBUG_MENU_LABEL_AI_FRUSTRATION"
+
+[node name="AIFrustrationStartVal" type="SpinBox" parent="GridContainer" index="25"]
+layout_mode = 2
+min_value = -100.0
+rounded = true
+allow_greater = true
+allow_lesser = true
+prefix = "Start:"
+
+[node name="AIFrustrationMinEdit" type="SpinBox" parent="GridContainer" index="26"]
+layout_mode = 2
+min_value = -100.0
+value = -5.0
+rounded = true
+allow_greater = true
+allow_lesser = true
+prefix = "Min:"
+
+[node name="AIFrustrationMaxEdit" type="SpinBox" parent="GridContainer" index="27"]
+layout_mode = 2
+min_value = -100.0
+value = 100.0
+rounded = true
+allow_greater = true
+allow_lesser = true
+prefix = "Max:"
+
+[node name="AIFrustrationIncreaseLabel" type="Label" parent="GridContainer" index="28"]
+layout_mode = 2
+text = "DEBUG_MENU_LABEL_AI_INCREASE"
+
+[node name="AIFrustrationIncreaseEdit" type="SpinBox" parent="GridContainer" index="29"]
+layout_mode = 2
+max_value = 5.0
+value = 1.0
+rounded = true
+allow_greater = true
+
+[node name="AIFrustrationThresholdLabel" type="Label" parent="GridContainer" index="30"]
+layout_mode = 2
+text = "DEBUG_MENU_LABEL_AI_THRESHOLD"
+
+[node name="AIFrustrationThresholdEdit" type="SpinBox" parent="GridContainer" index="31"]
+layout_mode = 2
+max_value = 10.0
+value = 5.0
+rounded = true
+allow_greater = true
+allow_lesser = true
+
+[node name="AIFrustrationModLabel" type="Label" parent="GridContainer" index="32"]
+layout_mode = 2
+text = "DEBUG_MENU_LABEL_AI_MULTIPLIER"
+
+[node name="AIFrustrationModEdit" type="SpinBox" parent="GridContainer" index="33"]
+layout_mode = 2
+min_value = 0.1
+max_value = 1.0
+step = 0.1
+value = 0.1
+allow_greater = true
+
+[connection signal="value_changed" from="GridContainer/PaddleSpeedEdit" to="." method="_on_setting_changed" binds= [110]]
 [connection signal="value_changed" from="GridContainer/Paddle1HeightEdit" to="." method="_on_setting_changed" binds= [101]]
 [connection signal="value_changed" from="GridContainer/Paddle1WidthEdit" to="." method="_on_setting_changed" binds= [102]]
 [connection signal="value_changed" from="GridContainer/Paddle2HeightEdit" to="." method="_on_setting_changed" binds= [103]]
 [connection signal="value_changed" from="GridContainer/Paddle2WidthEdit" to="." method="_on_setting_changed" binds= [104]]
 [connection signal="value_changed" from="GridContainer/BallRadiusEdit" to="." method="_on_setting_changed" binds= [105]]
+[connection signal="value_changed" from="GridContainer/BallBaseSpeedEdit" to="." method="_on_setting_changed" binds= [111]]
+[connection signal="value_changed" from="GridContainer/BallSpeedModEdit" to="." method="_on_setting_changed" binds= [112]]
+[connection signal="value_changed" from="GridContainer/BallSpeedModIncEdit" to="." method="_on_setting_changed" binds= [113]]
 [connection signal="toggled" from="GridContainer/ScoringEdit/Player1" to="." method="_on_setting_changed" binds= [106]]
 [connection signal="toggled" from="GridContainer/ScoringEdit/Player2" to="." method="_on_setting_changed" binds= [107]]
 [connection signal="toggled" from="GridContainer/CollisionEdit/Player1" to="." method="_on_setting_changed" binds= [108]]
 [connection signal="toggled" from="GridContainer/CollisionEdit/Player2" to="." method="_on_setting_changed" binds= [109]]
+[connection signal="value_changed" from="GridContainer/AISpeedModEdit/Min" to="GridContainer/AISpeedModEdit/Max" method="set_min"]
+[connection signal="value_changed" from="GridContainer/AISpeedModEdit/Min" to="." method="_on_setting_changed" binds= [115]]
+[connection signal="value_changed" from="GridContainer/AISpeedModEdit/Max" to="GridContainer/AISpeedModEdit/Min" method="set_max"]
+[connection signal="value_changed" from="GridContainer/AISpeedModEdit/Max" to="." method="_on_setting_changed" binds= [116]]
+[connection signal="toggled" from="GridContainer/AIFrustrationToggle" to="." method="_on_setting_changed" binds= [117]]
+[connection signal="value_changed" from="GridContainer/AIFrustrationStartVal" to="." method="_on_setting_changed" binds= [120]]
+[connection signal="value_changed" from="GridContainer/AIFrustrationMinEdit" to="GridContainer/AIFrustrationStartVal" method="set_min"]
+[connection signal="value_changed" from="GridContainer/AIFrustrationMinEdit" to="GridContainer/AIFrustrationMaxEdit" method="set_min"]
+[connection signal="value_changed" from="GridContainer/AIFrustrationMinEdit" to="." method="_on_setting_changed" binds= [118]]
+[connection signal="value_changed" from="GridContainer/AIFrustrationMaxEdit" to="GridContainer/AIFrustrationStartVal" method="set_max"]
+[connection signal="value_changed" from="GridContainer/AIFrustrationMaxEdit" to="GridContainer/AIFrustrationMinEdit" method="set_max"]
+[connection signal="value_changed" from="GridContainer/AIFrustrationMaxEdit" to="." method="_on_setting_changed" binds= [119]]
+[connection signal="value_changed" from="GridContainer/AIFrustrationIncreaseEdit" to="." method="_on_setting_changed" binds= [121]]
+[connection signal="value_changed" from="GridContainer/AIFrustrationThresholdEdit" to="." method="_on_setting_changed" binds= [122]]
+[connection signal="value_changed" from="GridContainer/AIFrustrationModEdit" to="." method="_on_setting_changed" binds= [123]]
