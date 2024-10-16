@@ -5,22 +5,22 @@
 [node name="SettingsMenuBase" type="ConfirmationDialog"]
 title = "SETTINGS_MENU_TITLE"
 size = Vector2i(542, 298)
+visible = true
 max_size = Vector2i(600, 460)
 ok_button_text = "SETTINGS_MENU_CONFIRM"
 dialog_hide_on_ok = false
 cancel_button_text = "SETTINGS_MENU_CANCEL"
 script = ExtResource("1_2dlfy")
 
-[node name="GridContainer" type="GridContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
 offset_left = 8.0
 offset_top = 8.0
-offset_right = -8.0
-offset_bottom = -49.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 534.0
+offset_bottom = 249.0
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 columns = 2
 
 [connection signal="canceled" from="." to="." method="discard_and_close"]
