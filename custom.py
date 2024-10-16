@@ -1,7 +1,6 @@
 # This file can be used to build a Redot release template which is optimized
 # for Redot Pong's specific needs.  To use it, enter the path to this file as
-# the "profile" parameter in a `scons` call.  I would also recommend using
-# `optimize=size` to get an even smaller binary.
+# the "profile" parameter in a `scons` call.
 
 extra_suffix = "redot_pong"
 
