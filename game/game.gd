@@ -48,7 +48,7 @@ var player_2_collision: bool = true
 
 # The ball's base speed and starting speed mod.
 var base_ball_speed: float = 300.0
-var starting_ball_speed_mod: float = 1.49
+var starting_ball_speed_mod: float = 1.5
 
 # The max angle (in radians) at which the ball will bounce.
 var max_bounce_angle: float = 1.2217304764
@@ -306,6 +306,7 @@ func new_game(with_two_players: bool = false) -> void:
 		ball_direction = Vector2.LEFT
 	else:
 		ball_direction = Vector2.LEFT if randi() & 1 else Vector2.RIGHT
+	ball_speed_mod = starting_ball_speed_mod
 
 	write_scores()
 	emit_signal("all_set")
