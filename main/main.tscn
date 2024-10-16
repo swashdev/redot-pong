@@ -52,6 +52,7 @@ label_settings = SubResource("LabelSettings_1bvp3")
 horizontal_alignment = 1
 
 [node name="Ball" type="Node2D" parent="Game"]
+visible = false
 position = Vector2(576, 324)
 script = ExtResource("2_1bvp3")
 metadata/_edit_lock_ = true
