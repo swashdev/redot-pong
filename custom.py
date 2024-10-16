@@ -18,5 +18,8 @@ deprecated = "no"
 # We need advanced GUI for the menus (for now)
 disable_advanced_gui = "no"
 
+# SVG is needed for Redot's standard UI icons
+module_svg_enabled = "yes"
+
 module_freetype_enabled = "yes"
 module_text_server_fb_enabled = "yes"
