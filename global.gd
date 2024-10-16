@@ -19,8 +19,8 @@ var report_full_redot_version: bool = true
 const VERSION_MAJOR: int = 0
 const VERSION_MINOR: int = 1
 const VERSION_PATCH: int = 0
-const VERSION_BUILD: String = "alpha.4"
-const IS_DEV_BUILD: bool = true
+const VERSION_BUILD: String = "beta.1"
+const IS_DEV_BUILD: bool = false
 
 
 # Returns `true` if the current build is a prerelease.
