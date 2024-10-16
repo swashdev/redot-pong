@@ -15,17 +15,6 @@ signal requested_menu
 
 #region Signals
 
-#region Constants
-
-# The base speed for the ball & paddle
-const BASE_BALL_SPEED: float = 300.0
-const BASE_PADDLE_SPEED: float = 300.0
-
-# The max angle (in radians) at which the ball will bounce.
-const MAX_BOUNCE_ANGLE = 1.2217304764
-
-#endregion Constants
-
 #region Child Nodes
 
 @onready var playfield = $Playfield
@@ -38,6 +27,9 @@ const MAX_BOUNCE_ANGLE = 1.2217304764
 #endregion Child Nodes
 
 #region Local Variables
+
+# The base speed for the paddles.
+var base_paddle_speed: float = 300.0
 
 # Player score.
 var player_1_score: int = 0
@@ -53,6 +45,13 @@ var player_1_collision: bool = true
 var player_2_collision: bool = true
 
 #region Ball Movement
+
+# The ball's base speed and starting speed mod.
+var base_ball_speed: float = 300.0
+var starting_ball_speed_mod: float = 1.49
+
+# The max angle (in radians) at which the ball will bounce.
+var max_bounce_angle: float = 1.2217304764
 
 # The direction that the ball is moving, irrespective of speed.
 var ball_direction: Vector2 = Vector2.RIGHT
@@ -77,6 +76,18 @@ var ai_speed_mod: float = 1.0
 # How frustrated the AI has become as a result of the player doing well.
 var frustration: int = 0
 
+# Debug options.
+var ai_min_speed: float = 0.1
+var ai_max_speed: float = 1.0
+# Set to `false` to turn off AI frustration.
+var ai_frustration: bool = true
+var min_frustration: int = -5
+var max_frustration: int = 100
+var starting_frustration: int = 0
+var frustration_increase: int = 1
+var frustration_threshold: int = 5
+var frustration_multiplier: float = 0.1
+
 #endregion AI Variables
 
 #endregion Local Variables
@@ -93,7 +104,7 @@ func _ready():
 
 func _process(delta: float) -> void:
 	var delta_pos: float
-	var movement: float = delta * BASE_PADDLE_SPEED
+	var movement: float = delta * base_paddle_speed
 
 	# Pause the game if the player requests it.
 	if Input.is_action_just_pressed("pause"):
@@ -131,7 +142,7 @@ func move_paddle(paddle: RedotPongPaddle, delta_pos: float) -> void:
 
 # Moves the ball.
 func move_ball(delta: float) -> void:
-	var ball_speed: float = BASE_BALL_SPEED * ball_speed_mod * delta
+	var ball_speed: float = base_ball_speed * ball_speed_mod * delta
 	var ball_velocity: Vector2 = ball_direction * ball_speed
 	var contact_point: float
 	var contact_point_normal: float
@@ -151,7 +162,7 @@ func move_ball(delta: float) -> void:
 			if ball.top < player_1.bottom and ball.bottom > player_1.top:
 				contact_point = player_1.position.y - ball.position.y
 				contact_point_normal = contact_point / player_1.extent_y
-				dir_rotate = contact_point_normal * MAX_BOUNCE_ANGLE
+				dir_rotate = contact_point_normal * max_bounce_angle
 				ball_direction = Vector2.RIGHT.rotated(-dir_rotate)
 				ball_bounced = BallBounced.RIGHT
 				if Global.color_changing_ball:
@@ -169,7 +180,7 @@ func move_ball(delta: float) -> void:
 			if ball.top < player_2.bottom and ball.bottom > player_2.top:
 				contact_point = player_2.position.y - ball.position.y
 				contact_point_normal = contact_point / player_2.extent_y
-				dir_rotate = contact_point_normal * MAX_BOUNCE_ANGLE
+				dir_rotate = contact_point_normal * max_bounce_angle
 				ball_direction = Vector2.LEFT.rotated(dir_rotate)
 				ball_bounced = BallBounced.LEFT
 				if Global.color_changing_ball:
@@ -207,14 +218,15 @@ func move_ball(delta: float) -> void:
 		# contact point and speed modifier.
 		if not two_players:
 			if ball_bounced == BallBounced.LEFT:
-				var min_ai_speed = clampf(0.1 * frustration, 0.1, 1.0)
-				ai_speed_mod = randf_range(min_ai_speed, 1.0)
+				var new_ai_min = frustration_multiplier * frustration
+				new_ai_min = clampf(new_ai_min, ai_min_speed, ai_max_speed)
+				ai_speed_mod = randf_range(new_ai_min, ai_max_speed)
 				target_contact_point = \
 						randf_range(-(player_2.extent_y), player_2.extent_y)
 				# If the AI is getting frustrated, it will be more likely to go
 				# for edge shots to try and throw the player off.  This may
 				# result in the AI doing something foolish.
-				if frustration >= 5:
+				if ai_frustration and frustration >= frustration_threshold:
 					if target_contact_point < 0.0:
 						target_contact_point += \
 								randf_range(-(player_2.extent_y + ball.radius), \
@@ -233,15 +245,15 @@ func score_player(which_player: int) -> void:
 		player_1_score += 1
 		if player_1_score >= 10:
 			winner = 1
-		if not two_players:
-			frustration += 1
+		if (not two_players) and ai_frustration:
+			frustration += frustration_increase
 	else:
 		player_2_score += 1
 		if player_2_score >= 10:
 			winner = 2
-		if not two_players:
-			if frustration > -5:
-				frustration -= 1
+		if (not two_players) and ai_frustration:
+			if frustration > min_frustration:
+				frustration -= frustration_increase
 	write_scores()
 	# If a player has scored more than 10 points, declare a winner.
 	if winner:
@@ -281,7 +293,7 @@ func new_game(with_two_players: bool = false) -> void:
 	player_2.position = Vector2(986, 324)
 	player_1_score = 0
 	player_2_score = 0
-	frustration = 0
+	frustration = starting_frustration
 
 	# The ball starts in the middle.  In a two-player game it will randomly
 	# select a player to serve to.  In a single-player game it will always
