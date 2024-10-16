@@ -76,6 +76,8 @@ func get_nice_version() -> String:
 # or Debug menu.
 enum Setting \
 {
+	FULL_REDOT_VERSION = 0,
+	COLOR_CHANGING_BALL = 1,
 	# This is a dummy value.  Values >= `DEBUG` are reserved for the debug menu
 	# and may affect game scoring.
 	DEBUG = 100,
@@ -103,6 +105,7 @@ enum Setting \
 	DEBUG_AI_FRUSTRATION_THRESHOLD = 122,
 	DEBUG_AI_FRUSTRATION_MULTIPLIER = 123,
 	DEBUG_AI_FRUSTRATION_ERROR = 124,
+	DEBUG_WINNING_SCORE = 125,
 }
 
 #endregion Settings Menu

@@ -43,6 +43,7 @@ var player_1_scoring: bool = true
 var player_2_scoring: bool = true
 var player_1_collision: bool = true
 var player_2_collision: bool = true
+var winning_score: int = 10
 
 #region Ball Movement
 
@@ -244,13 +245,13 @@ func score_player(which_player: int) -> void:
 	var winner: int = 0
 	if which_player == 1:
 		player_1_score += 1
-		if player_1_score >= 10:
+		if player_1_score >= winning_score:
 			winner = 1
 		if (not two_players) and ai_frustration:
 			frustration += frustration_increase
 	else:
 		player_2_score += 1
-		if player_2_score >= 10:
+		if player_2_score >= winning_score:
 			winner = 2
 		if (not two_players) and ai_frustration:
 			if frustration > min_frustration:

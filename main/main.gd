@@ -126,12 +126,25 @@ func _handle_settings_changes(from: Node, num_changes: int) -> void:
 			print(s + " set to " + str(v))
 		var report_on_off = func(s: String, b: bool) -> void:
 			print(s + " " + ("ON" if b else "OFF"))
+		var report_yn = func(s: String, b: bool) -> void:
+			print(s + "? " + ("YES" if b else "NO"))
 		for key in keys:
 			# For every `key` in the dictionary, grab the value from that key
 			# and decide what to do with it.
 			value = from.changed[key]
 			match key:
 #region Match of Doom
+				Global.Setting.FULL_REDOT_VERSION:
+					Global.report_full_redot_version = value
+					report_yn.call("Report full Redot Engine version", value)
+					main_menu.update_version_number()
+				Global.Setting.COLOR_CHANGING_BALL:
+					Global.color_changing_ball = value
+					report_on_off.call("Color-changing ball", value)
+#region Debug Settings
+				Global.Setting.DEBUG_WINNING_SCORE:
+					game.winning_score = value
+					report_set.call("Max points", value)
 				Global.Setting.DEBUG_PADDLE_1_HEIGHT:
 					player_1.extent_y = value / 2
 					report_set.call("Player 1 height", value)
@@ -204,6 +217,7 @@ func _handle_settings_changes(from: Node, num_changes: int) -> void:
 				Global.Setting.DEBUG_AI_FRUSTRATION_ERROR:
 					game.frustration_error = value
 					report_set.call("AI frustration error", value)
+#endregion Debug Settings
 #endregion Match of Doom
 				_:
 					# If the key is invalid, throw a warning and ignore it.
