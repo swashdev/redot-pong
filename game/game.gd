@@ -250,6 +250,11 @@ func score_player(which_player: int) -> void:
 		if (not two_players) and ai_frustration:
 			if frustration < max_frustration:
 				frustration += frustration_increase
+				# Debug output
+				if frustration == max_frustration:
+					print("The AI is at MAX FRUSTRATION!")
+				elif frustration == frustration_threshold:
+					print("The AI is ANGRY!")
 	else:
 		player_2_score += 1
 		if player_2_score >= winning_score:
@@ -257,6 +262,11 @@ func score_player(which_player: int) -> void:
 		if (not two_players) and ai_frustration:
 			if frustration > min_frustration:
 				frustration -= frustration_increase
+				# Debug output
+				if frustration == min_frustration:
+					print("The AI has achieved zen")
+				elif frustration == (frustration_threshold - 1):
+					print("The AI is calming down")
 	write_scores()
 	# If a player has scored more than 10 points, declare a winner.
 	if winner:
