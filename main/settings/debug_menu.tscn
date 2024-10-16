@@ -102,3 +102,13 @@ text = "PLAYER_1"
 layout_mode = 2
 button_pressed = true
 text = "PLAYER_2"
+
+[connection signal="value_changed" from="GridContainer/Paddle1HeightEdit" to="." method="_on_setting_changed" binds= [101]]
+[connection signal="value_changed" from="GridContainer/Paddle1WidthEdit" to="." method="_on_setting_changed" binds= [102]]
+[connection signal="value_changed" from="GridContainer/Paddle2HeightEdit" to="." method="_on_setting_changed" binds= [103]]
+[connection signal="value_changed" from="GridContainer/Paddle2WidthEdit" to="." method="_on_setting_changed" binds= [104]]
+[connection signal="value_changed" from="GridContainer/BallRadiusEdit" to="." method="_on_setting_changed" binds= [105]]
+[connection signal="toggled" from="GridContainer/ScoringEdit/Player1" to="." method="_on_setting_changed" binds= [106]]
+[connection signal="toggled" from="GridContainer/ScoringEdit/Player2" to="." method="_on_setting_changed" binds= [107]]
+[connection signal="toggled" from="GridContainer/CollisionEdit/Player1" to="." method="_on_setting_changed" binds= [108]]
+[connection signal="toggled" from="GridContainer/CollisionEdit/Player2" to="." method="_on_setting_changed" binds= [109]]
