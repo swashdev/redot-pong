@@ -1,0 +1,104 @@
+[gd_scene load_steps=2 format=3 uid="uid://cp8pan80nt2um"]
+
+[ext_resource type="PackedScene" uid="uid://buev6hml7s4p7" path="res://main/settings/settings_menu_base.tscn" id="1_dxt7l"]
+
+[node name="DebugMenu" instance=ExtResource("1_dxt7l")]
+title = "DEBUG_MENU_TITLE"
+
+[node name="Paddle1HeightLabel" type="Label" parent="GridContainer" index="0"]
+layout_mode = 2
+text = "DEBUG_MENU_LABEL_PADDLE_1_HEIGHT"
+
+[node name="Paddle1HeightEdit" type="SpinBox" parent="GridContainer" index="1"]
+layout_mode = 2
+min_value = 2.0
+max_value = 300.0
+step = 2.0
+value = 150.0
+allow_greater = true
+suffix = "px"
+
+[node name="Paddle1WidthLabel" type="Label" parent="GridContainer" index="2"]
+layout_mode = 2
+text = "DEBUG_MENU_LABEL_PADDLE_1_WIDTH"
+
+[node name="Paddle1WidthEdit" type="SpinBox" parent="GridContainer" index="3"]
+layout_mode = 2
+min_value = 2.0
+max_value = 40.0
+step = 2.0
+value = 20.0
+allow_greater = true
+suffix = "px"
+
+[node name="Paddle2HeightLabel" type="Label" parent="GridContainer" index="4"]
+layout_mode = 2
+text = "DEBUG_MENU_LABEL_PADDLE_2_HEIGHT"
+
+[node name="Paddle2HeightEdit" type="SpinBox" parent="GridContainer" index="5"]
+layout_mode = 2
+min_value = 2.0
+max_value = 300.0
+step = 2.0
+value = 150.0
+allow_greater = true
+suffix = "px"
+
+[node name="Paddle2WidthLabel" type="Label" parent="GridContainer" index="6"]
+layout_mode = 2
+text = "DEBUG_MENU_LABEL_PADDLE_2_WIDTH"
+
+[node name="Paddle2WidthEdit" type="SpinBox" parent="GridContainer" index="7"]
+layout_mode = 2
+min_value = 2.0
+max_value = 40.0
+step = 2.0
+value = 20.0
+allow_greater = true
+suffix = "px"
+
+[node name="BallRadiusLabel" type="Label" parent="GridContainer" index="8"]
+layout_mode = 2
+text = "DEBUG_MENU_LABEL_BALL_RADIUS"
+
+[node name="BallRadiusEdit" type="SpinBox" parent="GridContainer" index="9"]
+layout_mode = 2
+min_value = 1.0
+max_value = 20.0
+value = 10.0
+allow_greater = true
+suffix = "px"
+
+[node name="ScoringLabel" type="Label" parent="GridContainer" index="10"]
+layout_mode = 2
+text = "DEBUG_MENU_LABEL_SCORING"
+
+[node name="ScoringEdit" type="HBoxContainer" parent="GridContainer" index="11"]
+layout_mode = 2
+
+[node name="Player1" type="CheckBox" parent="GridContainer/ScoringEdit" index="0"]
+layout_mode = 2
+button_pressed = true
+text = "PLAYER_1"
+
+[node name="Player2" type="CheckBox" parent="GridContainer/ScoringEdit" index="1"]
+layout_mode = 2
+button_pressed = true
+text = "PLAYER_2"
+
+[node name="CollisionLabel" type="Label" parent="GridContainer" index="12"]
+layout_mode = 2
+text = "DEBUG_MENU_LABEL_COLLISION"
+
+[node name="CollisionEdit" type="HBoxContainer" parent="GridContainer" index="13"]
+layout_mode = 2
+
+[node name="Player1" type="CheckBox" parent="GridContainer/CollisionEdit" index="0"]
+layout_mode = 2
+button_pressed = true
+text = "PLAYER_1"
+
+[node name="Player2" type="CheckBox" parent="GridContainer/CollisionEdit" index="1"]
+layout_mode = 2
+button_pressed = true
+text = "PLAYER_2"
