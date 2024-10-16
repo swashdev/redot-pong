@@ -46,6 +46,12 @@ var player_2_score: int = 0
 # TODO: Implement multiplayer :-)
 var two_players: bool = false
 
+# Properties used for debugging purposes.
+var player_1_scoring: bool = true
+var player_2_scoring: bool = true
+var player_1_collision: bool = true
+var player_2_collision: bool = true
+
 #region Ball Movement
 
 # The direction that the ball is moving, irrespective of speed.
@@ -140,7 +146,8 @@ func move_ball(delta: float) -> void:
 	# Note that collision detection is unidirectional for the paddles, so that
 	# the ball can bounce back off of walls.
 	if ball_direction.x < 0.0:
-		if ball.left < player_1.right and ball.right > player_1.right:
+		if player_1_collision and \
+		ball.left < player_1.right and ball.right > player_1.right:
 			if ball.top < player_1.bottom and ball.bottom > player_1.top:
 				contact_point = player_1.position.y - ball.position.y
 				contact_point_normal = contact_point / player_1.extent_y
@@ -151,12 +158,14 @@ func move_ball(delta: float) -> void:
 					ball.set_color(player_1.get_color())
 		elif ball.left < playfield.left:
 			ball_direction.x *= -1
-			score_player(2)
 			ball_bounced = BallBounced.RIGHT
-			if Global.color_changing_ball:
-				ball.set_color(playfield.get_border_color())
+			if player_2_scoring:
+				score_player(2)
+				if Global.color_changing_ball:
+					ball.set_color(playfield.get_border_color())
 	elif ball_direction.x > 0.0:
-		if ball.right > player_2.left and ball.left < player_2.left:
+		if player_2_collision and \
+		ball.right > player_2.left and ball.left < player_2.left:
 			if ball.top < player_2.bottom and ball.bottom > player_2.top:
 				contact_point = player_2.position.y - ball.position.y
 				contact_point_normal = contact_point / player_2.extent_y
@@ -167,10 +176,11 @@ func move_ball(delta: float) -> void:
 					ball.set_color(player_2.get_color())
 		elif ball.right > playfield.right:
 			ball_direction.x *= -1
-			score_player(1)
 			ball_bounced = BallBounced.LEFT
-			if Global.color_changing_ball:
-				ball.set_color(playfield.get_border_color())
+			if player_1_scoring:
+				score_player(1)
+				if Global.color_changing_ball:
+					ball.set_color(playfield.get_border_color())
 	if ball_direction.y < 0.0:
 		if ball.top < playfield.top:
 			ball_direction.y *= -1
