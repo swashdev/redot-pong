@@ -42,9 +42,11 @@ func update_version_number() -> void:
 	else:
 		engine_version = "%d.%d" % [info["major"], info["minor"]]
 		if info["patch"] > 0:
-			engine_version += ".%d" % info["patch"]
-		engine_version += ".%s.%s.%s" % [info["status"], info["build"], \
-				info["hash"].left(9)]
+			engine_version += "." + str(info["patch"])
+		engine_version += "." + info["status"]
+		if info.has("status_version"):
+			engine_version += "." + str(info["status_version"])
+		engine_version += "." + info["build"] + "." + info["hash"].left(9)
 	if OS.is_debug_build():
 		engine_version += " (debug)"
 	var version_text: String = "Version " + pong_version + ", " + \
