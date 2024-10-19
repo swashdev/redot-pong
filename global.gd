@@ -20,7 +20,7 @@ const VERSION_MAJOR: int = 0
 const VERSION_MINOR: int = 1
 const VERSION_PATCH: int = 0
 const VERSION_BUILD: String = "beta.2"
-const IS_DEV_BUILD: bool = true
+const IS_DEV_BUILD: bool = false
 
 
 # Returns `true` if the current build is a prerelease.
