@@ -240,11 +240,11 @@ func move_ball(delta: float) -> void:
 				# result in the AI doing something foolish.
 				if ai_frustration and frustration >= frustration_threshold:
 					if target_contact_point < 0.0:
-						target_contact_point += \
+						target_contact_point = \
 								randf_range(-(player_2.extent_y + \
 								frustration_error), target_contact_point)
 					else:
-						target_contact_point += \
+						target_contact_point = \
 								randf_range(target_contact_point, \
 								player_2.extent_y + frustration_error)
 
