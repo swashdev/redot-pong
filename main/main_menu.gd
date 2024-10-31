@@ -44,8 +44,9 @@ func update_version_number() -> void:
 		if info["patch"] > 0:
 			engine_version += "." + str(info["patch"])
 		engine_version += "." + info["status"]
-		if info.has("status_version"):
-			engine_version += "." + str(info["status_version"])
+		if info["status"] != "stable" and info.has("status_version"):
+			if info["status_version"] > 0:
+				engine_version += "." + str(info["status_version"])
 		engine_version += "." + info["build"] + "." + info["hash"].left(9)
 	if OS.is_debug_build():
 		engine_version += " (debug)"
