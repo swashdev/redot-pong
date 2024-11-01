@@ -54,13 +54,23 @@ func get_nice_version() -> String:
 
 	if is_prerelease():
 		var prerelease_data: PackedStringArray = VERSION_BUILD.split(".", false)
+		var include_dot: bool = false
 		for element in prerelease_data:
 			if element == "stable":
 				break
 			elif element == "rc":
 				result += " Release Candidate"
 			else:
-				result += " " + element.capitalize()
+				# If the dot from the previous element was escaped, add a dot
+				# rather than a space.
+				result += "." if include_dot else " "
+				# If the element ends with a backslash, the dot is escaped and
+				# should be preserved.
+				include_dot = element.ends_with('\\')
+				if include_dot:
+					# Strip the trailing backslash from the element.
+					element = element.left(-1)
+				result += element.capitalize()
 		if IS_DEV_BUILD:
 			result += " (dev build)"
 	elif result == "1.0":
