@@ -90,6 +90,7 @@ focus_previous = NodePath("../LegalStuffButton")
 text = "MENU_BUTTON_QUIT_GAME"
 
 [node name="DebugMenuButton" type="Button" parent="Buttons"]
+visible = false
 layout_mode = 2
 text = "MENU_BUTTON_DEBUG"
 

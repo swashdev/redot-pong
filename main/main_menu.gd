@@ -66,3 +66,51 @@ func _on_visibility_changed() -> void:
 			resume_button.grab_focus()
 		else:
 			start_button.grab_focus()
+
+
+var _sequence: int = 0
+# Called when an input event occurs.
+func _input(event) -> void:
+	if _sequence < 10 and event.is_pressed():
+		var keycode: Key = KEY_NONE
+		var button: JoyButton = JOY_BUTTON_INVALID
+		if event is InputEventKey:
+			keycode = event.get_keycode()
+		elif event is InputEventJoypadButton:
+			button = event.get_button_index()
+		else:
+			return
+		if keycode == KEY_UP or button == JOY_BUTTON_DPAD_UP:
+			if _sequence < 2:
+				_sequence += 1
+			else:
+				_sequence = 1
+		elif keycode == KEY_DOWN or button == JOY_BUTTON_DPAD_DOWN:
+			if _sequence >= 2 and _sequence < 4:
+				_sequence += 1
+			else:
+				_sequence = 0
+		elif keycode == KEY_LEFT or button == JOY_BUTTON_DPAD_LEFT:
+			if _sequence == 4 or _sequence == 6:
+				_sequence += 1
+			else:
+				_sequence = 0
+		elif keycode == KEY_RIGHT or button == JOY_BUTTON_DPAD_RIGHT:
+			if _sequence == 5 or _sequence == 7:
+				_sequence += 1
+			else:
+				_sequence = 0
+		elif keycode == KEY_A or button == JOY_BUTTON_A:
+			if _sequence == 9:
+				_sequence += 1
+				$Buttons/DebugMenuButton.show()
+				$Buttons/DebugMenuButton.grab_focus()
+			else:
+				_sequence = 0
+		elif keycode == KEY_B or button == JOY_BUTTON_B:
+			if _sequence == 8:
+				_sequence += 1
+			else:
+				_sequence = 0
+		else:
+			_sequence = 0
