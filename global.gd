@@ -8,9 +8,9 @@ extends Node
 var color_changing_ball: bool = true
 
 # If set to `true`, a more verobse version number will be given for the Redot
-# Engine.  This is potentially beneficial for tracking down bugs.  For now
-# this defaults to true.
-var report_full_redot_version: bool = true
+# Engine.  This is potentially beneficial for tracking down bugs.
+# This defaults to false on release builds and true on prerelease builds.
+var report_full_redot_version: bool = is_prerelease()
 
 #endregion Configuration
 
