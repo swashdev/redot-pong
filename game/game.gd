@@ -45,6 +45,9 @@ var player_1_collision: bool = true
 var player_2_collision: bool = true
 var winning_score: int = 10
 
+# Counts the number of frames since the user was warned about a frame being skipped
+var frames_since_skip: int = 61
+
 #region Ball Movement
 
 # The ball's base speed and starting speed mod.
@@ -118,9 +121,15 @@ func _process(delta: float) -> void:
 	var delta_pos: float
 	var movement: float = delta * base_paddle_speed
 
+	frames_since_skip += 1
+
 	# Pause the game if the player requests it.
 	if Input.is_action_just_pressed("pause"):
 		pause(true)
+	elif delta > 0.1:
+		if frames_since_skip > 60:
+			push_warning("Skipping frame - delta is %f" % delta)
+			frames_since_skip = 0
 	else:
 		delta_pos = movement * Input.get_action_strength("ui_down")
 		delta_pos -= movement * Input.get_action_strength("ui_up")
