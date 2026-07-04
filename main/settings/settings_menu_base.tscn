@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://buev6hml7s4p7"]
 
-[ext_resource type="Script" path="res://main/settings/settings_menu.gd" id="1_2dlfy"]
+[ext_resource type="Script" uid="uid://du8xrc2d005eb" path="res://main/settings/settings_menu.gd" id="1_2dlfy"]
 
 [node name="SettingsMenuBase" type="ConfirmationDialog"]
 title = "SETTINGS_MENU_TITLE"

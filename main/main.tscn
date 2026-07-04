@@ -1,11 +1,11 @@
 [gd_scene load_steps=11 format=3 uid="uid://bdjqslatj4fqm"]
 
-[ext_resource type="Script" path="res://game/game.gd" id="1_1bvp3"]
-[ext_resource type="Script" path="res://main/main.gd" id="1_7mycd"]
-[ext_resource type="Script" path="res://game/playfield.gd" id="1_h2yge"]
+[ext_resource type="Script" uid="uid://c4qplotgl1x4w" path="res://game/game.gd" id="1_1bvp3"]
+[ext_resource type="Script" uid="uid://uaw2beduc350" path="res://main/main.gd" id="1_7mycd"]
+[ext_resource type="Script" uid="uid://bgnui7xr548sd" path="res://game/playfield.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cei2q28bymy4y" path="res://main/main_menu.tscn" id="1_lquwl"]
-[ext_resource type="Script" path="res://game/ball.gd" id="2_1bvp3"]
-[ext_resource type="Script" path="res://game/paddle.gd" id="3_lquwl"]
+[ext_resource type="Script" uid="uid://dfsq0wjlvju8i" path="res://game/ball.gd" id="2_1bvp3"]
+[ext_resource type="Script" uid="uid://bc2vabovlnavw" path="res://game/paddle.gd" id="3_lquwl"]
 [ext_resource type="PackedScene" uid="uid://cp8pan80nt2um" path="res://main/settings/debug_menu.tscn" id="7_4dugh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1bvp3"]

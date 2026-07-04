@@ -3,6 +3,7 @@
 /android/
 .editorconfig
 *.translation
+*.uid
 
 # Exported binaries
 bin/

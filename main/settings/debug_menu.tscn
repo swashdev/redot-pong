@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cp8pan80nt2um"]
 
 [ext_resource type="PackedScene" uid="uid://buev6hml7s4p7" path="res://main/settings/settings_menu_base.tscn" id="1_dxt7l"]
-[ext_resource type="Script" path="res://main/settings/debug_menu.gd" id="2_ab82p"]
+[ext_resource type="Script" uid="uid://dvm5s52odxmh2" path="res://main/settings/debug_menu.gd" id="2_ab82p"]
 
 [node name="DebugMenu" instance=ExtResource("1_dxt7l")]
 title = "DEBUG_MENU_TITLE"
@@ -9,7 +9,7 @@ position = Vector2i(0, 36)
 size = Vector2i(600, 460)
 script = ExtResource("2_ab82p")
 
-[node name="ScrollContainer" parent="." index="3"]
+[node name="ScrollContainer" parent="." index="2"]
 offset_right = 592.0
 offset_bottom = 411.0
 

@@ -15,7 +15,7 @@ config/name_localized={
 "ja": "リードットポン。"
 }
 run/main_scene="res://main/main.tscn"
-config/features=PackedStringArray("4.3", "GL Compatibility")
+config/features=PackedStringArray("26.2", "GL Compatibility", "Redot")
 config/icon="res://icon.svg"
 
 [autoload]
