@@ -253,6 +253,13 @@ func move_ball(delta: float) -> void:
 func score_player(which_player: int) -> void:
 	assert(which_player < 3 && which_player > 0)
 	var winner: int = 0
+	# If an opposing player scored, the ball's speed is reduced.
+	if two_players or which_player == 2:
+		# If the player scored a goal, the ball's speed is reduced rather than increased.
+		if ball_speed_mod > starting_ball_speed_mod + 0.25:
+			ball_speed_mod -= 0.26
+	#if Global.is_prerelease():
+		#print_debug("New ball speed: %f" % ball_speed_mod)
 	if which_player == 1:
 		player_1_score += 1
 		if player_1_score >= winning_score:
