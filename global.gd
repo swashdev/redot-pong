@@ -17,10 +17,10 @@ var report_full_redot_version: bool = is_prerelease()
 #region Version Number
 
 const VERSION_MAJOR: int = 0
-const VERSION_MINOR: int = 1
+const VERSION_MINOR: int = 2
 const VERSION_PATCH: int = 0
 const VERSION_BUILD: String = ""
-const IS_DEV_BUILD: bool = false
+const IS_DEV_BUILD: bool = true
 
 
 # Returns `true` if the current build is a prerelease.
